@@ -1,0 +1,19 @@
+<config>
+    <param name="mp3" value="music/dusk_monsoon/shree_raga-vilambit_in_jhumra_tal.mp3
+							|music/dusk_monsoon/shree_raga-drut_gat_in_tin_tal.mp3
+							|music/dusk_monsoon/raga_mian_ki_malhar-vilambit_ek_tal.mp3
+							|music/dusk_monsoon/raga_mian_ki_malhar-drut_gatin_tin_tal.mp3
+							|music/dusk_monsoon/nomadic_melody.mp3"/>
+    <param name="width" value="400"/>
+    <param name="height" value="200"/>
+    <param name="showvolume" value="1"/>
+    <param name="volumeheight" value="10"/>
+	<param name="title" value="Shree Raga - Vilambit in Jhumra Tal|Shree Raga - Drut Gat in Tin Tal|Raga Mian ki Malhar - Vilambit Ek Tal|Raga Mian ki Malhar - Drut Gatin Tin Tal|Nomadic Melody"/>
+	<param name="bgcolor" value="d9d9d9"/>
+    <param name="bgcolor1" value="4e9494"/>
+    <param name="bgcolor2" value="4e9494"/>
+	<param name="playlistcolor" value="e6e6e6"/>
+	<param name="playlistalpha" value="100"/>
+	<param name="textcolor" value="7e2605"/>
+	<param name="currentmp3color" value="000000"/>
+</config>
