@@ -1,0 +1,108 @@
+---
+layout: page
+title: "Fenway Park"
+description: ""
+active: gallery
+header-img: "gallery/fenwaypark/img/bg.jpg"
+album-title: "Painting and close-ups"
+images:
+ - image_path: /gallery/fenwaypark/img/fenwaypark_main.jpg
+   title: Fenway Park
+   material: Oil on canvas
+   dimensions: 68 x 50
+ - image_path: /gallery/fenwaypark/img/closeup1.jpg
+   title: Close-up 1
+   material: Oil on canvas
+   dimensions: 68 x 50
+ - image_path: /gallery/fenwaypark/img/closeup2.jpg
+   title: Close-up 2
+   material: Oil on canvas
+   dimensions: 68 x 50
+ - image_path: /gallery/fenwaypark/img/closeup3.jpg
+   title: Close-up 3
+   material: Oil on canvas
+   dimensions: 68 x 50
+ - image_path: /gallery/fenwaypark/img/closeup4.jpg
+   title: Close-up 4
+   material: Oil on canvas
+   dimensions: 68 x 50
+ - image_path: /gallery/fenwaypark/img/closeup5.jpg
+   title: Close-up 5
+   material: Oil on canvas
+   dimensions: 68 x 50
+ - image_path: /gallery/fenwaypark/img/closeup6.jpg
+   title: Close-up 6
+   material: Oil on canvas
+   dimensions: 68 x 50
+---
+
+<html class="no-js" lang="en">
+<head>
+	<meta content="charset=utf-8">
+</head>
+
+    <body>
+ 
+	<section id="content" role="main">
+		<p><b>Prints are available</b>, please email <a href="mailto:contact@paulalexandrejohn.com">contact@paulalexandrejohn.com</a> for more information.</p>
+			<p><i>Fenway Park</i> was the first in the series of Paul's baseball paintings.  This oil on canvas work was painted 
+			in 1994.  Painted in his personal style and filled with many details, it is one of Paul's signature works.</p>
+
+			<p>The project required that Paul start by researching the storied ballpark.  He traveled to Fenway on a 
+			summer's day to watch a game in the park and to take photos from various angles in order to have some reference 
+			material for the upcoming months of painting.  These photos served to provide all the intricate details of the park.  
+			From hot-dog vendors to the park's multitude of signs, Fenway's magical ambiance was recreated in Paul's unique 
+			style.  When finished, this painting represented one of Paul's longer and complicated projects.</p>
+
+			<p>Like many of Paul's works, the painting is large and measures 64 by 56 &#189; inches.  <i>Fenway Park</i> is as bright as it is expressive
+			and lovingly captures the jubilant atmosphere of a summer's day game in the famous ball park.</p>
+		<div class="wrapper">
+	<br><br>
+			
+			
+			<h2>{{page.album-title}}</h2>
+			<!-- Gallery __-->
+			{% include gallery.html %}
+
+		</div><!-- END .wrapper -->
+	</section>
+
+<!-- jQuery -->    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<!-- include image popups -->
+<script src="{{ site.baseurl }}/js/jquery.magnific-popup.js"></script>
+<script src="{{ site.baseurl }}/js/retina.min.js"></script>
+<!-- include Masonry -->
+<script src="{{ site.baseurl }}/js/isotope.pkgd.min.js"></script> 
+<!-- include mousewheel plugins -->
+<script src="{{ site.baseurl }}/js/jquery.mousewheel.min.js"></script>
+<!-- include carousel plugins -->
+<script src="{{ site.baseurl}}/js/jquery.tinycarousel.min.js"></script>
+<!-- include svg line drawing plugin -->
+<script src="{{ site.baseurl }}/js/jquery.lazylinepainter.min.js"></script>
+<!-- include custom script -->
+<script src="{{ site.baseurl }}/js/scripts.js"></script>
+<!-- Modernizr -->
+ <script src="{{ site.baseurl }}/js/modernizr.js"></script>
+
+    <script type="text/javascript">
+      $(document).ready(function($) {
+        $('a.popup').magnificPopup({
+          type: 'image',
+	  gallery:{
+         enabled:true,
+         navigateByImgClick: true,
+         preload: [0,1] // Will preload 0 - before current, and 1 after the current image
+       },
+      image: {
+         titleSrc: function(item) {
+              return item.el.attr('title') + '&nbsp;' + item.el.attr('data-caption');
+            }
+        }
+          // other options
+      });
+});
+    </script>
+
+</body></html>

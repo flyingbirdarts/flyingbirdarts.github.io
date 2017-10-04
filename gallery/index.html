@@ -1,0 +1,99 @@
+---
+layout: page
+title: "ART"
+description: ""
+active: gallery
+header-img: "img/art-bg.jpg"
+images:
+ - image_path: /img/gallerylogos/allegoricallogo2.jpg
+   gallery-folder: /gallery/allegorical/
+   gallery-name: Allegorical
+   <!-- gallery-date: July 2015 -->
+ - image_path: /img/gallerylogos/americanalogo2.jpg
+   gallery-folder: /gallery/americana/
+   gallery-name: Americana
+   <!-- gallery-date: June 2015 -->
+ - image_path: /img/gallerylogos/animalslogo2.jpg
+   gallery-folder: /gallery/animals/
+   gallery-name: Animals
+   <!-- gallery-date: May 2015 -->
+ - image_path: /img/gallerylogos/baseballlogo2.jpg
+   gallery-folder: /gallery/baseball/
+   gallery-name: Baseball
+   <!-- gallery-date: April 2015 -->
+ - image_path: /img/gallerylogos/carpetlogo2.jpg
+   gallery-folder: /gallery/carpets/
+   gallery-name: Carpets
+   <!-- gallery-date: March 2015 -->
+ - image_path: /img/gallerylogos/fenwayparklogo2.jpg
+   gallery-folder: /gallery/fenwaypark/
+   gallery-name: Fenway Park
+   <!-- gallery-date: February 2015 -->
+ - image_path: /img/gallerylogos/mountainslogo2.jpg
+   gallery-folder: /gallery/mountains/
+   gallery-name: Mountains
+   <!-- gallery-date: January 2015 -->
+ - image_path: /img/gallerylogos/oldyankeestadiumlogo2.jpg
+   gallery-folder: /gallery/oldyankeestadium/
+   gallery-name: Old Yankee Stadium
+   <!-- gallery-date: December 2014 -->
+ - image_path: /img/gallerylogos/swimmersandwaveslogo2.jpg
+   gallery-folder: /gallery/swimmersandwaves/
+   gallery-name: Swimmers and Waves
+   <!-- gallery-date: November 2014 -->
+ - image_path: /img/gallerylogos/westernreligionlogo2.jpg
+   gallery-folder: /gallery/westernreligion/
+   gallery-name: Western Religion
+   <!-- gallery-date: November 2014 -->
+---
+
+<html class="no-js" lang="en">
+<head>
+	<meta content="charset=utf-8">
+    <link rel="stylesheet" href="{{ "/css/selena.css" | prepend: site.baseurl }}">
+</head>
+<body class="gallery">
+	<section id="content" role="main">
+		<div class="wrapper">
+			<h2>{{page.title}}</h2>
+			<!-- Gallery __-->
+			<div class="gallery masonry-gallery">
+				{% for image in page.images %}  	
+          <figure class="gallery-item">
+            <figure class="effect-selena">
+				      <header class='gallery-icon'>
+		            <a href="{{ site.url }}{{ site.baseurl }}{{ image.gallery-folder }}">
+                <img src="{{ site.url }}{{ site.baseurl }}{{ image.image_path }}"></a>
+              </header>	
+                <figcaption class='gallery-caption'>
+						      <div class="entry-summary">
+							      <h3>{{image.gallery-name}}</h3>
+							      <p>{{image.gallery-date}}</p>
+						      </div>
+					     </figcaption>
+            </figure>
+				  </figure>							
+        {% endfor %}					
+			</div>
+		</div><!-- END .wrapper -->
+	</section>
+  <br>
+
+<!-- jQuery -->    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="{{ site.baseurl }}/js/retina.min.js"></script>
+<!-- include Masonry -->
+<script src="{{ site.baseurl }}/js/isotope.pkgd.min.js"></script> 
+<!-- include mousewheel plugins -->
+<script src="{{ site.baseurl }}/js/jquery.mousewheel.min.js"></script>
+<!-- include carousel plugins -->
+<script src="{{ site.baseurl}}/js/jquery.tinycarousel.min.js"></script>
+<!-- include svg line drawing plugin -->
+<script src="{{ site.baseurl }}/js/jquery.lazylinepainter.min.js"></script>
+<!-- include custom script -->
+<script src="{{ site.baseurl }}/js/scripts.js"></script>
+<!-- Modernizr -->
+ <script src="{{ site.baseurl }}/js/modernizr.js"></script>
+</body>
+</html>

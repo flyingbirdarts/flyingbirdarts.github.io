@@ -1,64 +1,164 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+---
+layout: home
+main-title: "Paul Alexandre John"
+subtitle: "Artist and Indian Classical Musician"
+description: "Art and Music"
+images:
+ - image_path: /img/slider/bg5.jpg
+   gallery-folder: /img/slider/
+ - image_path: /img/slider/bg1.jpg
+   gallery-folder: /img/slider/
+ - image_path: /img/slider/bg4.jpg
+   gallery-folder: /img/slider/
+ - image_path: /img/slider/bg2.jpg
+   gallery-folder: /img/slider/
+ - image_path: /img/slider/bg3.jpg
+   gallery-folder: /img/slider/
+ - image_path: /img/slider/paulflute_colorado.jpg
+   gallery-folder: /img/slider/
+---
+
+
+<html class="no-js" lang="en">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-<link href="css/style.css" rel="stylesheet" type="text/css" />
-<title>Paul Alexandre John: Home</title>
-<meta name="google-site-verification" content="q7BZ7LxhjM9yRMfDzHqaMkyS2npsgn4wSJEy11yfZtg" /> <!-- For google webmaster tools -->
-<meta name="description" content="The website for artist and Indian classical musician, Paul Alexandre John" />
-<meta name="keywords" content="Paul Alexandre John, indian classical music, artist, painting, flute, bansuri, journey over india, ragas for you, dusk monsoon" />
+	<meta content="charset=utf-8">
+
+<!-- CSS -->
+     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+     <link rel="stylesheet" href="{{ site.baseurl }}/css/main.css" type="text/css" media="screen" />
+      <link rel="stylesheet" href="{{ site.baseurl }}/css/galleries.css" media="screen" />
+<link rel="stylesheet" href="{{ site.baseurl }}/css/WYSIWYG.css" media="screen" />
+
+
+
+	<!-- Modernizr -->
+  <script src="{{ site.baseurl }}/js/modernizr.js"></script>
+
+
+
+  
+
 </head>
 
-<body>
+<body class="fullscreen">
 
-	 <div id="container">
-		<div id="top"></div>
-		<div id="left"></div>
-		<div id="center">
-			<div id="header"></div>
-			<div id="navbar">
-				<ul>
-					<li><a href="index.html">Home</a></li>
-					<li><a href="art.html">Art</a></li>
-					<li><a href="music.html">Music</a></li>
-					<li><a href="biography.html">Biography</a></li>
-					<li><a href="store/index.html">Store</a></li>
-					<li><a href="contact.html">Contact</a></li>
-				</ul>
-			</div> <!-- end navbar -->
-			<div id="content">
-			<div id="welcomemenu">
-			<div class="gallerypicture1">
-				
-				<a href="music.html"><img src="images/paulflute4.jpg" alt="" /></a>
-				<div class="gallerylogocaption1"><a href="music.html">Music</a></div>
+<!-- MAIN CONTENT SECTION  _____________________________________________-->
+	<section id="content" role="main">
+		<div class="wrapper">
+
+			<!-- WYSIWYG -->
+
+		<div class="position-absolute shadow">
+				<h2 class="big no-margin"><strong>{{ page.main-title }}</strong></h2>
+				<h2>{{ page.subtitle }}</h2> 
+                     <div class="entry-summary">
+							<p>{{ page.description }}</p>
+						</div><br />
 			</div>
-			<div class="gallerypicture1">
-				
-				<a href="art.html"><img src="images/artlogo4.jpg" alt="" /></a>
-				<div class="gallerylogocaption1"><a href="art.html">Art</a></div>
-			</div> 
-			</div> <!-- end welcomemenu -->
-			<div id="welcome">Welcome to the home of artist and Indian classical musician, Paul Alexandre John.</div>
 			
-			</div> <!-- end content -->
-		</div><!-- end center -->
-		<div id="right"></div>
-		<div id="bottom"></div>
-	</div>	 
-	<div id="footer">&#169; Paul Alexandre John, 2016</div>
-	
-	<!-- start google analyics code -->
-	<script type="text/javascript">
-var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
-document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
-</script>
-<script type="text/javascript">
-var pageTracker = _gat._getTracker("UA-5191969-1");
-pageTracker._trackPageview();
-</script>
-	<!-- end google analyics code -->
-	
-</body>
+			<div class="gallery fullscreen-gallery kenburns-gallery">
 
-</html>
+				<canvas id="kenburns"></canvas>
+				
+{% for image in page.images %}  	
+
+				<figure class="gallery-item">
+					<header class='gallery-icon'>
+
+<a href="{{ site.url }}{{ site.baseurl }}{{ image.gallery-folder }}">
+<img src="{{ site.url }}{{ site.baseurl }}{{ image.image_path }}"></a>
+	
+				</header>	
+				</figure>
+
+{% endfor %}
+
+				</div>
+			<!-- END WYSIWYG -->
+			
+	
+		</div><!-- END .wrapper -->
+		
+	</section>
+
+<div id="footer" role="contentinfo">
+		<ul class="soc-icons">
+
+                 {% if site.facebook_username %}
+			<li>
+   <a href="https://facebook.com/{{ site.facebook_username }}" style="
+color:#dddddd; target="_blank" title="Facebook">
+                       <i class="fa fa-facebook"></i>
+                     </span>
+</a></li>
+    {% endif %}
+ {% if site.twitter_username %}
+			<li>
+   <a href="https://twitter.com/{{ site.twitter_username }}" style="
+color:#dddddd; target="_blank" title="Twitter">
+                       <i class="fa fa-twitter"></i>
+                     </span>
+</a></li>
+    {% endif %}
+                {% if site.instagram_username %}
+			<li>
+   <a href="https://instagram.com/{{ site.instagram_username }}" style="
+color:#dddddd; target="_blank" title="Instagram">
+                       <i class="fa fa-instagram"></i>
+                     </span>
+</a></li>
+    {% endif %}
+                    {% if site.flickr_username %}
+						<li>
+   <a href="https://flickr.com/photos/{{ site.flickr_username }}" style="
+color:#dddddd; target="_blank" title="Flickr">
+              <i class="fa fa-flickr"></i>
+                     </span>
+ </a></li>	
+     {% endif %}
+                    {% if site.deviantart_username %}
+			<li>
+   <a href="http://{{ site.deviantart_username }}.deviantart.com" style="
+color:#dddddd; target="_blank" title="DeviantArt">
+<i class="fa fa-deviantart"></i> </span>
+</a></li>	
+    {% endif %}
+                    {% if site.github_username %}
+                <li>
+   <a href="https://github.com/{{ site.github_username }}" style="
+color:#dddddd; target="_blank" title="Github">
+              <i class="fa fa-github"></i>
+                     </span>
+                   {% endif %}
+<li>
+    <a href="mailto:{{ site.email }}" style="
+color:#dddddd; target="_blank" title="Email">
+              <i class="fa fa-envelope-o"></i></span>
+          </a> </li>
+	
+					
+		</ul>	
+	</div>
+
+  
+<!-- jQuery -->
+  <script src="//code.jquery.com/jquery-2.1.3.min.js"></script>
+      <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+  <script src="{{ site.baseurl }}/js/retina.min.js"></script> 
+
+<!-- include mousewheel plugins -->
+<script src="{{ site.baseurl }}/js/jquery.mousewheel.min.js"></script>
+<!-- include gallery cycle plugin -->
+<script src="{{ site.baseurl }}/js/jquery.cycle.min.js"></script>
+<!-- include kenburns plugins -->
+<script src="{{ site.baseurl }}/js/kenburns.min.js"></script>
+<!-- include svg line drawing plugin -->
+<script src="{{ site.baseurl }}/js/jquery.lazylinepainter.min.js"></script>
+<!-- include custom script -->
+<script src="{{ site.baseurl }}/js/scripts.js"></script>
+
+
+       </body>
+    </html>
+

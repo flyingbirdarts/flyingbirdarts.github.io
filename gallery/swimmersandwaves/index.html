@@ -1,0 +1,128 @@
+---
+layout: page
+title: "Swimmers and Waves"
+description: ""
+active: gallery
+header-img: "gallery/swimmersandwaves/img/bg.jpg"
+album-title: "Gallery"
+images:
+ - image_path: /gallery/swimmersandwaves/img/artistandreef.jpg
+   title: Artist and Reef
+   material: Oil on masonite
+   dimensions: 32 x 32
+ - image_path: /gallery/swimmersandwaves/img/dawnwave.jpg
+   title: Dawn Wave
+   material: Oil on watercolor paper
+   dimensions: 48 x 42
+ - image_path: /gallery/swimmersandwaves/img/eyeofthewave.jpg
+   title: Eye Of The Wave
+   material: India Ink on watercolor paper
+   dimensions: 48 x 42
+ - image_path: /gallery/swimmersandwaves/img/floridiansprings.jpg
+   title: Floridian Springs
+   material: Acrylic on canvas
+   dimensions: 68 x 48
+ - image_path: /gallery/swimmersandwaves/img/flyingwiththesurf.jpg
+   title: Flying with the Surf
+   material: Acrylic on watercolor paper
+   dimensions: 55½ x 41½
+ - image_path: /gallery/swimmersandwaves/img/forestpond.jpg
+   title: Forest Pond
+   material: Acrylic on watercolor paper
+   dimensions: 52 x 41
+ - image_path: /gallery/swimmersandwaves/img/kalibythesea.jpg
+   title: Kali by the Sea
+   material: Oil on canvas
+   dimensions: 51 x 44½
+ - image_path: /gallery/swimmersandwaves/img/ridingthewave.jpg
+   title: Riding the Wave
+   material: Acrylic on watercolor paper
+   dimensions: 52 x 41½
+ - image_path: /gallery/swimmersandwaves/img/risingwaveandsunburst.jpg
+   title: Rising Waves and Sunburst
+   material: Acrylic on watercolor paper
+   dimensions: 30 x 22
+ - image_path: /gallery/swimmersandwaves/img/shadowsandreflections.jpg
+   title: Shadows and Reflections
+   material: Acrylic on watercolor paper
+   dimensions: 52 x 41
+ - image_path: /gallery/swimmersandwaves/img/studyinred.jpg
+   title: Study in Red
+   material: Acrylic on watercolor paper
+   dimensions: 55½ x 41½
+ - image_path: /gallery/swimmersandwaves/img/swimminginthesprings.jpg
+   title: Swimming in the Springs
+   material: Acrylic on canvas
+   dimensions: 68 x 50
+ - image_path: /gallery/swimmersandwaves/img/thewave.jpg
+   title: The Wave
+   material: India Ink on watercolor paper
+   dimensions: 48 x 42
+ - image_path: /gallery/swimmersandwaves/img/thunderbird.jpg
+   title: Thunderbird
+   material: Acrylic on watercolor paper
+   dimensions: 52 x 41½
+ - image_path: /gallery/swimmersandwaves/img/underthewave.jpg
+   title: Under the Wave
+   material: Acrylic on watercolor paper
+   dimensions: 52 x 41½
+---
+
+<html class="no-js" lang="en">
+<head>
+	<meta content="charset=utf-8">
+</head>
+
+    <body>
+ 
+	<section id="content" role="main">
+		<div class="wrapper">
+	<br><br>
+			<h2>{{page.album-title}}</h2>
+
+
+			<!-- Gallery __-->
+      {% include gallery.html %}
+
+		</div><!-- END .wrapper -->
+	</section>
+
+<!-- jQuery -->    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<!-- include image popups -->
+<script src="{{ site.baseurl }}/js/jquery.magnific-popup.js"></script>
+<script src="{{ site.baseurl }}/js/retina.min.js"></script>
+<!-- include Masonry -->
+<script src="{{ site.baseurl }}/js/isotope.pkgd.min.js"></script> 
+<!-- include mousewheel plugins -->
+<script src="{{ site.baseurl }}/js/jquery.mousewheel.min.js"></script>
+<!-- include carousel plugins -->
+<script src="{{ site.baseurl}}/js/jquery.tinycarousel.min.js"></script>
+<!-- include svg line drawing plugin -->
+<script src="{{ site.baseurl }}/js/jquery.lazylinepainter.min.js"></script>
+<!-- include custom script -->
+<script src="{{ site.baseurl }}/js/scripts.js"></script>
+<!-- Modernizr -->
+ <script src="{{ site.baseurl }}/js/modernizr.js"></script>
+
+    <script type="text/javascript">
+      $(document).ready(function($) {
+        $('a.popup').magnificPopup({
+          type: 'image',
+	  gallery:{
+         enabled:true,
+         navigateByImgClick: true,
+         preload: [0,1] // Will preload 0 - before current, and 1 after the current image
+       },
+      image: {
+         titleSrc: function(item) {
+              return item.el.attr('title') + '&nbsp;' + item.el.attr('data-caption');
+            }
+        }
+          // other options
+      });
+});
+    </script>
+
+</body></html>

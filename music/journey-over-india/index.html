@@ -1,0 +1,220 @@
+---
+layout: page
+title: "Journey Over India"
+description: "Flying Bird Music, 1994"
+active: music
+header-img: "img/journeyoverindia-bg.jpg"
+---
+
+<html class="no-js" lang="en">
+<head>
+	<meta content="charset=utf-8">
+    <link rel="stylesheet" href="{{ "/css/selena.css" | prepend: site.baseurl }}">
+    <link rel="stylesheet" href="{{ "/css/musicplayer.css" | prepend: site.baseurl }}">
+</head>
+
+
+    <body class="gallery">
+ 
+	<section id="content" role="main">
+		<div class="wrapper">
+	
+			<h2>{{page.title}}</h2>
+
+      <div class="music-container">
+    <div class="column center">
+        <h1>Preview tracks</h1>
+    </div>
+    <div class="column add-bottom">
+        <div id="mainwrap">
+            <div id="nowPlay">
+                <span class="left" id="npAction">Paused...</span>
+                <span class="right" id="npTitle"></span>
+            </div>
+            <div id="audiowrap">
+                <div id="audio0">
+                    <audio preload id="audio1" controls="controls">Your browser does not support HTML5 Audio!</audio>
+                </div>
+                <div id="tracks">
+                    <a id="btnPrev">&laquo;</a>
+                    <a id="btnNext">&raquo;</a>
+                </div>
+            </div>
+            <div id="plwrap">
+                <ul id="plList"></ul>
+            </div>
+        </div>
+    </div>
+    <div class="column add-bottom center">
+        <p>Web player by <a href="http://www.markhillard.com/">mh</a></p>
+    </div>
+</div>
+
+			
+		</div><!-- END .wrapper -->
+	</section>
+
+
+<!-- jQuery -->    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="{{ site.baseurl }}/js/retina.min.js"></script>
+<!-- include Masonry -->
+<script src="{{ site.baseurl }}/js/isotope.pkgd.min.js"></script> 
+<!-- include mousewheel plugins -->
+<script src="{{ site.baseurl }}/js/jquery.mousewheel.min.js"></script>
+<!-- include carousel plugins -->
+<script src="{{ site.baseurl}}/js/jquery.tinycarousel.min.js"></script>
+<!-- include svg line drawing plugin -->
+<script src="{{ site.baseurl }}/js/jquery.lazylinepainter.min.js"></script>
+<!-- include custom script -->
+<script src="{{ site.baseurl }}/js/scripts.js"></script>
+<!-- Modernizr -->
+ <script src="{{ site.baseurl }}/js/modernizr.js"></script>
+
+
+<script>
+// html5media enables <video> and <audio> tags in all major browsers
+// External File: https://api.html5media.info/1.1.8/html5media.min.js
+
+
+// Add user agent as an attribute on the <html> tag...
+// Inspiration: https://css-tricks.com/ie-10-specific-styles/
+// var b = document.documentElement;
+// b.setAttribute('data-useragent', navigator.userAgent);
+// b.setAttribute('data-platform', navigator.platform);
+
+
+// HTML5 audio player + playlist controls...
+// Inspiration: http://jonhall.info/how_to/create_a_playlist_for_html5_audio
+jQuery(function ($) {
+    var supportsAudio = !!document.createElement('audio').canPlayType;
+    if (supportsAudio) {
+        var index = 0,
+            playing = false,
+            mediaPath = 'tracks/',
+            extension = '',
+            tracks = [{
+                "track": 1,
+                "name": "Bilawal (Morning Raga)",
+                "length": "0:30",
+                "file": "bilawal"
+            }, {
+                "track": 2,
+                "name": "Assamese Folk Song",
+                "length": "0:30",
+                "file": "assamese_folk_song"
+            }, {
+                "track": 3,
+                "name": "Song of Bengal",
+                "length": "0:30",
+                "file": "song_of_bengal"
+            }, {
+                "track": 4,
+                "name": "Noah's Song",
+                "length": "0:30",
+                "file": "noahs_song"
+            }, {
+                "track": 5,
+                "name": "Hindal (Spring Raga or Evening Raga)",
+                "length": "0:30",
+                "file": "hindal"
+            }, {
+                "track": 6,
+                "name": "Armenian Chant",
+                "length": "0:30",
+                "file": "armenian_chant"
+            }, {
+                "track": 7,
+                "name": "Dhani",
+                "length": "0:30",
+                "file": "dhani"
+            }, {
+                "track": 8,
+                "name": "Bilawal Dhun",
+                "length": "0:30",
+                "file": "bilawal_dhun"
+            }],
+            buildPlaylist = $.each(tracks, function(key, value) {
+                var trackNumber = value.track,
+                    trackName = value.name,
+                    trackLength = value.length;
+                if (trackNumber.toString().length === 1) {
+                    trackNumber = '0' + trackNumber;
+                } else {
+                    trackNumber = '' + trackNumber;
+                }
+                $('#plList').append('<li><div class="plItem"><div class="plNum">' + trackNumber + '.</div><div class="plTitle">' + trackName + '</div><div class="plLength">' + trackLength + '</div></div></li>');
+            }),
+            trackCount = tracks.length,
+            npAction = $('#npAction'),
+            npTitle = $('#npTitle'),
+            audio = $('#audio1').bind('play', function () {
+                playing = true;
+                npAction.text('Now Playing...');
+            }).bind('pause', function () {
+                playing = false;
+                npAction.text('Paused...');
+            }).bind('ended', function () {
+                npAction.text('Paused...');
+                if ((index + 1) < trackCount) {
+                    index++;
+                    loadTrack(index);
+                    audio.play();
+                } else {
+                    audio.pause();
+                    index = 0;
+                    loadTrack(index);
+                }
+            }).get(0),
+            btnPrev = $('#btnPrev').click(function () {
+                if ((index - 1) > -1) {
+                    index--;
+                    loadTrack(index);
+                    if (playing) {
+                        audio.play();
+                    }
+                } else {
+                    audio.pause();
+                    index = 0;
+                    loadTrack(index);
+                }
+            }),
+            btnNext = $('#btnNext').click(function () {
+                if ((index + 1) < trackCount) {
+                    index++;
+                    loadTrack(index);
+                    if (playing) {
+                        audio.play();
+                    }
+                } else {
+                    audio.pause();
+                    index = 0;
+                    loadTrack(index);
+                }
+            }),
+            li = $('#plList li').click(function () {
+                var id = parseInt($(this).index());
+                if (id !== index) {
+                    playTrack(id);
+                }
+            }),
+            loadTrack = function (id) {
+                $('.plSel').removeClass('plSel');
+                $('#plList li:eq(' + id + ')').addClass('plSel');
+                npTitle.text(tracks[id].name);
+                index = id;
+                audio.src = mediaPath + tracks[id].file + extension;
+            },
+            playTrack = function (id) {
+                loadTrack(id);
+                audio.play();
+            };
+        extension = audio.canPlayType('audio/mpeg') ? '.mp3' : audio.canPlayType('audio/ogg') ? '.ogg' : '';
+        loadTrack(index);
+    }
+});
+
+</script>
+
+</body></html>

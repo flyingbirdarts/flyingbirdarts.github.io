@@ -1,0 +1,158 @@
+---
+layout: page
+title: "Allegorical"
+description: ""
+active: gallery
+header-img: "gallery/allegorical/img/bg.jpg"
+album-title: "Gallery"
+images:
+ - image_path: /gallery/allegorical/img/30yearson(firdoze).jpg
+   title: 30 Years On (Firdoze)
+   material: Oil on linen
+   dimensions: 51 x 45
+ - image_path: /gallery/allegorical/img/3peaks.jpg
+   title: 3 Peaks
+   material: Acrylic on canvas
+   dimensions: 25 x 18
+ - image_path: /gallery/allegorical/img/againstgravity.jpg
+   title: Against Gravity
+   material: Acrylic on canvas
+   dimensions: 51 x 48
+ - image_path: /gallery/allegorical/img/alberodellavita.jpg
+   title: Albero Della Vita
+   material: Oil on canvas
+   dimensions: 56 x 44
+ - image_path: /gallery/allegorical/img/autumn.jpg
+   title: Autumn
+   material: Oil on canvas
+   dimensions: 48 x 36
+ - image_path: /gallery/allegorical/img/danceofthechildren.jpg
+   title: Dance of the Children
+   material: Oil on canvas
+   dimensions: 68 x 48
+ - image_path: /gallery/allegorical/img/dancers.jpg
+   title: Dancers
+   material: Oil on canvas
+   dimensions: 56 x 42¼
+ - image_path: /gallery/allegorical/img/eastmeetswest.jpg
+   title: East Meets West
+   material: Oil on canvas
+   dimensions: 68 x 48
+ - image_path: /gallery/allegorical/img/harvestmoon.jpg
+   title: Harvest Moon
+   material: Oil on linen
+   dimensions: 15 x 14
+ - image_path: /gallery/allegorical/img/imageswithin.jpg
+   title: Images Within
+   material: Oil on canvas
+   dimensions: 56 x 54
+ - image_path: /gallery/allegorical/img/ladolcevita.jpg
+   title: La Dolce Vita
+   material: Oil on hessian
+   dimensions: 53¼ x 38¼
+ - image_path: /gallery/allegorical/img/metamorphosis.jpg
+   title: Metamorphosis
+   material: Acrylic on canvas
+   dimensions: 68 x 48
+ - image_path: /gallery/allegorical/img/primavera.jpg
+   title: Primavera
+   material: India Ink on watercolor paper
+   dimensions: 41½ x 55½
+ - image_path: /gallery/allegorical/img/shadowsandlight.jpg
+   title: Shadows and Light
+   material: Acrylic on canvas
+   dimensions: 56 x 48
+ - image_path: /gallery/allegorical/img/studyinredoxide.jpg
+   title: Study in Red Oxide
+   material: Acrylic on watercolor paper
+   dimensions: 42 x 36
+ - image_path: /gallery/allegorical/img/studyinredyellowandgreen.jpg
+   title: Study in Red, Yellow, and Green
+   material: Acrylic on watercolor paper
+   dimensions: 42 x 36
+ - image_path: /gallery/allegorical/img/sundancers.jpg
+   title: Sun Dancers
+   material: Acrylic on canvas
+   dimensions: 56 x 42
+ - image_path: /gallery/allegorical/img/themusereturns.jpg
+   title: The Muse Returns
+   material: Oil on masonite
+   dimensions: 48 x 48
+ - image_path: /gallery/allegorical/img/tigerseye.jpg
+   title: Tiger's Eye
+   material: Acrylic on watercolor paper
+   dimensions: 52 x 41
+ - image_path: /gallery/allegorical/img/transitofvenus.jpg
+   title: Transit of Venus
+   material: Acrylic on canvas
+   dimensions: 48 x 24
+ - image_path: /gallery/allegorical/img/treeandriveroflife.jpg
+   title: Tree and River of Life
+   material: Oil on canvas
+   dimensions: 60 x 60
+ - image_path: /gallery/allegorical/img/trilogy.jpg
+   title: Trilogy
+   material: Oil on canvas
+   dimensions: 68 x 49
+---
+
+<html class="no-js" lang="en">
+<head>
+	<meta content="charset=utf-8">
+</head>
+
+    <body>
+ 
+	<section id="content" role="main">
+		<div class="wrapper">
+	<br><br>
+			<h2>{{page.album-title}}</h2>
+
+
+			<!-- Gallery __-->
+			{% include gallery.html %}
+
+		</div><!-- END .wrapper -->
+	</section>
+
+<!-- jQuery -->    
+
+<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<!-- include image popups -->
+<script src="{{ site.baseurl }}/js/jquery.magnific-popup.js"></script>
+
+<script type="text/javascript">
+      $(document).ready(function($) {
+        $('a.popup').magnificPopup({
+         type: 'image',
+	  gallery:{
+         enabled:true,
+         navigateByImgClick: true,
+         preload: [0,1] // Will preload 0 - before current, and 1 after the current image
+       },
+image: {
+      titleSrc: function(item) {
+              return item.el.attr('title') + '&nbsp;' + item.el.attr('data-caption');
+            }
+        }
+          // other options
+      });
+});
+    </script>
+
+<script src="{{ site.baseurl }}/js/retina.min.js"></script>
+<!-- include Masonry -->
+<script src="{{ site.baseurl }}/js/isotope.pkgd.min.js"></script> 
+<!-- include mousewheel plugins -->
+<script src="{{ site.baseurl }}/js/jquery.mousewheel.min.js"></script>
+<!-- include carousel plugins -->
+<script src="{{ site.baseurl}}/js/jquery.tinycarousel.min.js"></script>
+<!-- include svg line drawing plugin -->
+<script src="{{ site.baseurl }}/js/jquery.lazylinepainter.min.js"></script>
+<!-- include custom script -->
+<script src="{{ site.baseurl }}/js/scripts.js"></script>
+<!-- Modernizr -->
+ <script src="{{ site.baseurl }}/js/modernizr.js"></script>
+
+    
+</body></html>

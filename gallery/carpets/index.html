@@ -1,0 +1,108 @@
+---
+layout: page
+title: "Carpets"
+description: ""
+active: gallery
+header-img: "gallery/carpets/img/bg.jpg"
+album-title: "Gallery"
+images:
+ - image_path: /gallery/carpets/img/15starandanimalcarpet.jpg
+   title: 15 Star and Animal Geometry
+   material: Oil on canvas
+   dimensions: 72 x 48
+ - image_path: /gallery/carpets/img/armeniancarpet.jpg
+   title: Armenian Carpet
+   material: Oil on canvas
+   dimensions: 68 x 50
+ - image_path: /gallery/carpets/img/birdofparadise.jpg
+   title: Bird of Paradise
+   material: Oil on canvas
+   dimensions: 56 x 44
+ - image_path: /gallery/carpets/img/dancersdragonsandbirds.jpg
+   title: Armenian Dragon and Phoenix Carpet
+   material: Oil on canvas
+   dimensions: 56 x 44
+ - image_path: /gallery/carpets/img/dragonclover.jpg
+   title: Dragon Clover
+   material: Oil on canvas
+   dimensions: 56 x 44
+ - image_path: /gallery/carpets/img/firdoze.jpg
+   title: Firdoze II
+   material: India Ink on watercolor paper
+   dimensions: 28 x 22
+ - image_path: /gallery/carpets/img/handsandfeet.jpg
+   title: Hands and Feet
+   material: Oil on canvas
+   dimensions: 51 x 45
+ - image_path: /gallery/carpets/img/namazlik.jpg
+   title: Namazlik
+   material: India Ink on watercolor paper
+   dimensions: 65 x 52
+ - image_path: /gallery/carpets/img/springcarpet.jpg
+   title: Spring Carpet
+   material: Oil on linen
+   dimensions: 72 x 48
+ - image_path: /gallery/carpets/img/untitled.jpg
+   title: Untitled
+   material: India Ink on watercolor paper
+   dimensions: 30 x 22
+---
+
+<html class="no-js" lang="en">
+<head>
+	<meta content="charset=utf-8">
+</head>
+
+    <body>
+ 
+	<section id="content" role="main">
+		<div class="wrapper">
+	<br><br>
+			<h2>{{page.album-title}}</h2>
+
+
+			<!-- Gallery __-->
+      {% include gallery.html %}
+
+		</div><!-- END .wrapper -->
+	</section>
+
+<!-- jQuery -->    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<!-- include image popups -->
+<script src="{{ site.baseurl }}/js/jquery.magnific-popup.js"></script>
+<script src="{{ site.baseurl }}/js/retina.min.js"></script>
+<!-- include Masonry -->
+<script src="{{ site.baseurl }}/js/isotope.pkgd.min.js"></script> 
+<!-- include mousewheel plugins -->
+<script src="{{ site.baseurl }}/js/jquery.mousewheel.min.js"></script>
+<!-- include carousel plugins -->
+<script src="{{ site.baseurl}}/js/jquery.tinycarousel.min.js"></script>
+<!-- include svg line drawing plugin -->
+<script src="{{ site.baseurl }}/js/jquery.lazylinepainter.min.js"></script>
+<!-- include custom script -->
+<script src="{{ site.baseurl }}/js/scripts.js"></script>
+<!-- Modernizr -->
+ <script src="{{ site.baseurl }}/js/modernizr.js"></script>
+
+    <script type="text/javascript">
+      $(document).ready(function($) {
+        $('a.popup').magnificPopup({
+          type: 'image',
+	  gallery:{
+         enabled:true,
+         navigateByImgClick: true,
+         preload: [0,1] // Will preload 0 - before current, and 1 after the current image
+       },
+      image: {
+         titleSrc: function(item) {
+              return item.el.attr('title') + '&nbsp;' + item.el.attr('data-caption');
+            }
+        }
+          // other options
+      });
+});
+    </script>
+
+</body></html>

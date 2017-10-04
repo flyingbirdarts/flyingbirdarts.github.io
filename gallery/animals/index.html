@@ -1,0 +1,92 @@
+---
+layout: page
+title: "Animals"
+description: ""
+active: gallery
+header-img: "gallery/animals/img/bg.jpg"
+album-title: "Gallery"
+images:
+ - image_path: /gallery/animals/img/gallopingsteed.jpg
+   title: Galloping Steed
+   material: Oil on canvas
+   dimensions: 56 x 48
+ - image_path: /gallery/animals/img/jaguar.jpg
+   title: Jaguar
+   material: Oil on masonite
+   dimensions: 32 x 25
+ - image_path: /gallery/animals/img/noahsark.jpg
+   title: Noah's Ark
+   material: Oil on canvas
+   dimensions: 59 x 47
+ - image_path: /gallery/animals/img/stallions.jpg
+   title: Arabians
+   material: Oil on masonite
+   dimensions: 16 x 16
+ - image_path: /gallery/animals/img/tigerbythetail.jpg
+   title: Tiger By The Tail
+   material: Oil on masonite
+   dimensions: 10 x 8
+ - image_path: /gallery/animals/img/tigre.jpg
+   title: Tigre
+   material: Oil on canvas
+   dimensions: 23 x 23
+---
+
+<html class="no-js" lang="en">
+<head>
+	<meta content="charset=utf-8">
+</head>
+
+    <body>
+ 
+	<section id="content" role="main">
+		<div class="wrapper">
+	<br><br>
+			<h2>{{page.album-title}}</h2>
+
+
+			<!-- Gallery __-->
+      {% include gallery.html %}
+
+		</div><!-- END .wrapper -->
+	</section>
+
+<!-- jQuery -->    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<!-- include image popups -->
+<script src="{{ site.baseurl }}/js/jquery.magnific-popup.js"></script>
+<script src="{{ site.baseurl }}/js/retina.min.js"></script>
+<!-- include Masonry -->
+<script src="{{ site.baseurl }}/js/isotope.pkgd.min.js"></script> 
+<!-- include mousewheel plugins -->
+<script src="{{ site.baseurl }}/js/jquery.mousewheel.min.js"></script>
+<!-- include carousel plugins -->
+<script src="{{ site.baseurl}}/js/jquery.tinycarousel.min.js"></script>
+<!-- include svg line drawing plugin -->
+<script src="{{ site.baseurl }}/js/jquery.lazylinepainter.min.js"></script>
+<!-- include custom script -->
+<script src="{{ site.baseurl }}/js/scripts.js"></script>
+<!-- Modernizr -->
+ <script src="{{ site.baseurl }}/js/modernizr.js"></script>
+
+    <script type="text/javascript">
+      $(document).ready(function($) {
+        $('a.popup').magnificPopup({
+          type: 'image',
+	  gallery:{
+         enabled:true,
+         navigateByImgClick: true,
+         preload: [0,1] // Will preload 0 - before current, and 1 after the current image
+       },
+      image: {
+         titleSrc: function(item) {
+              return item.el.attr('title') + '&nbsp;' + item.el.attr('data-caption');
+            }
+        }
+          // other options
+      });
+});
+    </script>
+
+</body></html>

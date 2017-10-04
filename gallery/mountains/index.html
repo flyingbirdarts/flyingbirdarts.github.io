@@ -1,0 +1,117 @@
+---
+layout: page
+title: "Mountains"
+description: ""
+active: gallery
+header-img: "gallery/mountains/img/bg.jpg"
+album-title: "Gallery"
+images:
+ - image_path: /gallery/mountains/img/amonpeakoftheridges.jpg
+   title: Peak of the Ridges
+   material: Acrylic on canvas
+   dimensions: 56 x 44⅛
+ - image_path: /gallery/mountains/img/davispond.jpg
+   title: Davis Pond
+   material: Acrylic on canvas
+   dimensions: 28 x 22
+ - image_path: /gallery/mountains/img/davispondandharveyridge.jpg
+   title: Davis Pond and Harvey Ridge
+   material: Acrylic on canvas
+   dimensions: 55 x 46
+ - image_path: /gallery/mountains/img/fightlightinthegreatbasin.jpg
+   title: First Light in the Great Basin
+   material: Acrylic on canvas
+   dimensions: 28 x 22
+ - image_path: /gallery/mountains/img/martinsridgetowerbeacon.jpg
+   title: Martins Ridge Tower Beacon
+   material: Acrylic on watercolor paper
+   dimensions: 21 x 21
+ - image_path: /gallery/mountains/img/mountainclimb.jpg
+   title: Mountain Climb
+   material: Acrylic on canvas
+   dimensions: 55 x 40
+ - image_path: /gallery/mountains/img/pamolaandkeepridge.jpg
+   title: Pamola and Keep Ridge
+   material: Acrylic on canvas
+   dimensions: 55 x 30
+ - image_path: /gallery/mountains/img/peakoftheridges.jpg
+   title: Peak of the Ridges
+   material: Acrylic on canvas
+   dimensions: 56 x 44
+ - image_path: /gallery/mountains/img/scramblingupdoubletop.jpg
+   title: Scrambling Up Doubletop
+   material: Acrylic on canvas
+   dimensions: 51 x 44¾
+ - image_path: /gallery/mountains/img/southbasinandtheknifeedge.jpg
+   title: South Basin and the Knife Edge
+   material: Acrylic on canvas
+   dimensions: 21 x 18¾
+ - image_path: /gallery/mountains/img/southbasinkatahdin.jpg
+   title: South Basin Katahdin
+   material: Acrylic on canvas
+   dimensions: 30 x 22⅝
+ - image_path: /gallery/mountains/img/travelermountain.jpg
+   title: Traveler Mountain
+   material: Acrylic on canvas
+   dimensions: 56 x 42¼
+
+---
+
+<html class="no-js" lang="en">
+<head>
+	<meta content="charset=utf-8">
+</head>
+
+    <body>
+ 
+	<section id="content" role="main">
+		<div class="wrapper">
+	<br><br>
+			<h2>{{page.album-title}}</h2>
+
+
+			<!-- Gallery __-->
+      {% include gallery.html %}
+
+		</div><!-- END .wrapper -->
+	</section>
+
+<!-- jQuery -->    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<!-- include image popups -->
+<script src="{{ site.baseurl }}/js/jquery.magnific-popup.js"></script>
+<script src="{{ site.baseurl }}/js/retina.min.js"></script>
+<!-- include Masonry -->
+<script src="{{ site.baseurl }}/js/isotope.pkgd.min.js"></script> 
+<!-- include mousewheel plugins -->
+<script src="{{ site.baseurl }}/js/jquery.mousewheel.min.js"></script>
+<!-- include carousel plugins -->
+<script src="{{ site.baseurl}}/js/jquery.tinycarousel.min.js"></script>
+<!-- include svg line drawing plugin -->
+<script src="{{ site.baseurl }}/js/jquery.lazylinepainter.min.js"></script>
+<!-- include custom script -->
+<script src="{{ site.baseurl }}/js/scripts.js"></script>
+<!-- Modernizr -->
+ <script src="{{ site.baseurl }}/js/modernizr.js"></script>
+
+    <script type="text/javascript">
+      $(document).ready(function($) {
+        $('a.popup').magnificPopup({
+          type: 'image',
+	  gallery:{
+         enabled:true,
+         navigateByImgClick: true,
+         preload: [0,1] // Will preload 0 - before current, and 1 after the current image
+       },
+      image: {
+         titleSrc: function(item) {
+              return item.el.attr('title') + '&nbsp;' + item.el.attr('data-caption');
+            }
+        }
+          // other options
+      });
+});
+    </script>
+
+</body></html>
