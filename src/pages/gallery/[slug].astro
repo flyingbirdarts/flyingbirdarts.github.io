@@ -1,6 +1,7 @@
 ---
-import { Image } from 'astro:assets';
+import { Image, getImage } from 'astro:assets';
 import { getCollection, type CollectionEntry } from 'astro:content';
+import PaintingLightbox from '../../components/PaintingLightbox.astro';
 import PageLayout from '../../layouts/PageLayout.astro';
 
 export async function getStaticPaths() {
@@ -13,28 +14,56 @@ interface Props {
 }
 
 const { data } = Astro.props.entry;
+
+// Paintings are kept at low resolution (600px max) on purpose, to discourage reproductions.
+// Link to a WebP at that native size rather than the original JPEG.
+const slugify = (text: string) =>
+  text
+    .toLowerCase()
+    .normalize('NFKD')
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-|-$/g, '');
+const usedIds = new Map<string, number>();
+const paintings = await Promise.all(
+  data.paintings.map(async (p) => {
+    // Unique per collection (two paintings can share a title), used for links like #makalu.
+    const base = slugify(p.title) || 'painting';
+    const count = (usedIds.get(base) ?? 0) + 1;
+    usedIds.set(base, count);
+    return {
+      ...p,
+      pid: count > 1 ? `${base}-${count}` : base,
+      full: (await getImage({ src: p.image, format: 'webp' })).src,
+      details: [p.material, p.dimensions].filter(Boolean).join(', '),
+    };
+  }),
+);
 ---
 
 <PageLayout title={data.title} headerImage={data.header}>
-  <!-- TODO: masonry hover captions + lightbox. -->
-  <ul class="paintings">
+  <ul class="paintings" data-lightbox>
     {
-      data.paintings.map((p) => (
+      paintings.map((p) => (
         <li>
           <figure>
-            <a href={p.image.src}>
-              <Image src={p.image} alt={p.title} widths={[400, 800, 1200]} sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw" />
+            <a href={p.full} data-pid={p.pid} data-pswp-width={p.image.width} data-pswp-height={p.image.height}>
+              <Image
+                src={p.image}
+                alt={p.title}
+                widths={[300, 600]}
+                sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+              />
             </a>
             <figcaption>
               <strong>{p.title}</strong>
-              {p.material && <span>{p.material}</span>}
-              {p.dimensions && <span>{p.dimensions}</span>}
+              {p.details && <span>{p.details}</span>}
             </figcaption>
           </figure>
         </li>
       ))
     }
   </ul>
+  <PaintingLightbox />
 </PageLayout>
 
 <style>
@@ -67,11 +96,16 @@ const { data } = Astro.props.entry;
     margin: 0;
   }
 
+  img {
+    width: 100%;
+  }
+
   figcaption {
     display: flex;
     flex-direction: column;
     padding-top: 0.5rem;
     font-size: 0.9rem;
+    line-height: 1.4;
   }
 
   figcaption span {

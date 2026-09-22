@@ -1,0 +1,176 @@
+---
+// Opens paintings in a PhotoSwipe lightbox. Add it to a page that has an element with
+// [data-lightbox] containing links with data-pswp-width/height and data-pid, each inside a
+// <figure> whose <figcaption> has the title in <strong> and details in <span>.
+import { site } from '../site';
+---
+
+<div hidden data-lightbox-config data-email={site.email} data-owner={site.title}></div>
+
+<script>
+  import PhotoSwipeLightbox from 'photoswipe/lightbox';
+  import 'photoswipe/style.css';
+
+  // Paintings are only 600px on their longest edge. Let them grow to 1.5× to fill more of a
+  // large screen, but no further, so they don't turn blurry.
+  const MAX_ZOOM = 1.5;
+  type Size = { x: number; y: number } | null;
+  // PhotoSwipe's own `fit` never enlarges past 1, so work out the size that fills the screen.
+  const fitUpTo = ({ elementSize, panAreaSize }: { elementSize: Size; panAreaSize: Size }) => {
+    if (!elementSize || !panAreaSize) return 1;
+    const fit = Math.min(panAreaSize.x / elementSize.x, panAreaSize.y / elementSize.y);
+    return Math.min(fit, MAX_ZOOM);
+  };
+
+  const config = document.querySelector<HTMLElement>('[data-lightbox-config]')!.dataset;
+  const gallery = document.querySelector<HTMLElement>('[data-lightbox]');
+
+  if (gallery) {
+    const links = [...gallery.querySelectorAll<HTMLAnchorElement>('a[data-pid]')];
+    const lightbox = new PhotoSwipeLightbox({
+      gallery,
+      children: 'a[data-pid]',
+      pswpModule: () => import('photoswipe'),
+      bgOpacity: 1,
+      initialZoomLevel: fitUpTo,
+      secondaryZoomLevel: MAX_ZOOM,
+      maxZoomLevel: MAX_ZOOM,
+      // Hide the zoom button (little room to zoom at this resolution); pinch and double-tap still work.
+      zoom: false,
+      // Leave room below the painting for its caption, and beside it for the arrows.
+      paddingFn: (viewport) => {
+        const narrow = viewport.x < 700;
+        return { top: narrow ? 56 : 40, bottom: narrow ? 180 : 170, left: narrow ? 0 : 72, right: narrow ? 0 : 72 };
+      },
+    });
+
+    lightbox.on('uiRegister', () => {
+      lightbox.pswp!.ui!.registerElement({
+        name: 'painting-caption',
+        appendTo: 'root',
+        order: 9,
+        onInit: (el, pswp) => {
+          // Keep the caption just below the painting (and on screen when zoomed in).
+          const place = () => {
+            const slide = pswp.currSlide;
+            if (!slide) return;
+            const imageBottom = slide.pan.y + slide.height * slide.currZoomLevel;
+            const lowest = pswp.viewportSize.y - el.offsetHeight - 12;
+            el.style.top = `${Math.max(0, Math.min(imageBottom + 16, lowest))}px`;
+          };
+          pswp.on('zoomPanUpdate', ({ slide }) => slide === pswp.currSlide && place());
+          pswp.on('resize', place);
+
+          pswp.on('change', () => {
+            const figure = pswp.currSlide?.data.element?.closest('figure');
+            const title = figure?.querySelector('figcaption strong')?.textContent ?? '';
+            const details = figure?.querySelector('figcaption span')?.textContent ?? '';
+            el.replaceChildren();
+
+            const heading = document.createElement('strong');
+            heading.textContent = title;
+            el.append(heading);
+            if (details) {
+              const detail = document.createElement('span');
+              detail.className = 'details';
+              detail.textContent = details;
+              el.append(detail);
+            }
+
+            const footer = document.createElement('span');
+            footer.className = 'footer';
+            footer.textContent = `© ${config.owner}`;
+            if (config.email) {
+              const ask = document.createElement('a');
+              ask.href = `mailto:${config.email}?subject=${encodeURIComponent(`About the painting "${title}"`)}`;
+              ask.textContent = 'Ask about this painting';
+              footer.append(' · ', ask);
+            }
+            el.append(footer);
+            place();
+          });
+        },
+      });
+    });
+
+    // Give each open painting its own link (e.g. /gallery/mountains/#makalu). The first slide
+    // adds a history entry so the browser/phone back button closes the lightbox.
+    let pushed = false;
+    lightbox.on('change', () => {
+      const pid = lightbox.pswp?.currSlide?.data.element?.dataset.pid;
+      if (!pid) return;
+      if (!pushed) {
+        history.pushState({ lightbox: true }, '', `#${pid}`);
+        pushed = true;
+      } else {
+        history.replaceState({ lightbox: true }, '', `#${pid}`);
+      }
+    });
+    lightbox.on('close', () => {
+      if (pushed && history.state?.lightbox) history.back();
+      pushed = false;
+    });
+    window.addEventListener('popstate', () => {
+      if (lightbox.pswp && pushed) {
+        pushed = false;
+        lightbox.pswp.close();
+      }
+    });
+
+    lightbox.init();
+
+    // Opening a link like /gallery/mountains/#makalu goes straight to that painting.
+    const start = links.findIndex((a) => `#${a.dataset.pid}` === location.hash);
+    if (start >= 0) {
+      history.replaceState(null, '', location.pathname + location.search);
+      lightbox.loadAndOpen(start, { gallery });
+    }
+  }
+</script>
+
+<style is:global>
+  .pswp {
+    --pswp-bg: #000;
+  }
+
+  .pswp__painting-caption {
+    position: absolute;
+    left: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.2rem;
+    padding: 0 var(--gutter);
+    text-align: center;
+    color: var(--color-text);
+    font-family: var(--font-body);
+    line-height: 1.4;
+  }
+
+  .pswp__painting-caption strong {
+    font-size: clamp(1.3rem, 1.15rem + 0.6vw, 1.7rem);
+  }
+
+  .pswp__painting-caption .details {
+    font-size: clamp(1.1rem, 1rem + 0.4vw, 1.35rem);
+    font-family: Times, serif;
+    font-style: italic;
+    color: #bbb;
+  }
+
+  .pswp__painting-caption .footer {
+    margin-top: 0.5rem;
+    font-size: clamp(0.9rem, 0.85rem + 0.2vw, 1rem);
+    color: var(--color-muted);
+  }
+
+  .pswp__painting-caption a {
+    color: var(--color-accent);
+  }
+
+  .pswp__painting-caption a:hover,
+  .pswp__painting-caption a:focus-visible {
+    color: #fff;
+  }
+</style>
