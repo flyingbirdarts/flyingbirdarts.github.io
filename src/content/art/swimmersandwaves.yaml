@@ -1,0 +1,65 @@
+title: Swimmers and Waves
+order: 9
+cover: ../../assets/art/_covers/swimmersandwaveslogo2.jpg
+header: ../../assets/art/swimmersandwaves/bg.jpg
+paintings:
+  - image: ../../assets/art/swimmersandwaves/artistandreef.jpg
+    title: Artist and Reef
+    material: Oil on masonite
+    dimensions: 32 x 32
+  - image: ../../assets/art/swimmersandwaves/dawnwave.jpg
+    title: Dawn Wave
+    material: Oil on watercolor paper
+    dimensions: 48 x 42
+  - image: ../../assets/art/swimmersandwaves/eyeofthewave.jpg
+    title: Eye Of The Wave
+    material: India Ink on watercolor paper
+    dimensions: 48 x 42
+  - image: ../../assets/art/swimmersandwaves/floridiansprings.jpg
+    title: Floridian Springs
+    material: Acrylic on canvas
+    dimensions: 68 x 48
+  - image: ../../assets/art/swimmersandwaves/flyingwiththesurf.jpg
+    title: Flying with the Surf
+    material: Acrylic on watercolor paper
+    dimensions: 55½ x 41½
+  - image: ../../assets/art/swimmersandwaves/forestpond.jpg
+    title: Forest Pond
+    material: Acrylic on watercolor paper
+    dimensions: 52 x 41
+  - image: ../../assets/art/swimmersandwaves/kalibythesea.jpg
+    title: Kali by the Sea
+    material: Oil on canvas
+    dimensions: 51 x 44½
+  - image: ../../assets/art/swimmersandwaves/ridingthewave.jpg
+    title: Riding the Wave
+    material: Acrylic on watercolor paper
+    dimensions: 52 x 41½
+  - image: ../../assets/art/swimmersandwaves/risingwavesandsunburst.jpg
+    title: Rising Waves and Sunburst
+    material: Acrylic on watercolor paper
+    dimensions: 30 x 22
+  - image: ../../assets/art/swimmersandwaves/shadowsandreflections.jpg
+    title: Shadows and Reflections
+    material: Acrylic on watercolor paper
+    dimensions: 52 x 41
+  - image: ../../assets/art/swimmersandwaves/studyinred.jpg
+    title: Study in Red
+    material: Acrylic on watercolor paper
+    dimensions: 55½ x 41½
+  - image: ../../assets/art/swimmersandwaves/swimminginthesprings.jpg
+    title: Swimming in the Springs
+    material: Acrylic on canvas
+    dimensions: 68 x 50
+  - image: ../../assets/art/swimmersandwaves/thewave.jpg
+    title: The Wave
+    material: India Ink on watercolor paper
+    dimensions: 48 x 42
+  - image: ../../assets/art/swimmersandwaves/thunderbird.jpg
+    title: Thunderbird
+    material: Acrylic on watercolor paper
+    dimensions: 52 x 41½
+  - image: ../../assets/art/swimmersandwaves/underthewave.jpg
+    title: Under the Wave
+    material: Acrylic on watercolor paper
+    dimensions: 52 x 41½

@@ -1,0 +1,112 @@
+---
+import { Image } from 'astro:assets';
+import logo from '../assets/logo.png';
+import { site } from '../site';
+
+const path = Astro.url.pathname;
+---
+
+<nav class="nav" aria-label="Main">
+  <a class="brand" href="/" title="Home">
+    <Image src={logo} alt={site.title} width={150} loading="eager" />
+  </a>
+  <button class="toggle" type="button" aria-expanded="false" aria-controls="nav-links">
+    <span class="visually-hidden">Menu</span>
+    <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true">
+      <path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+    </svg>
+  </button>
+  <ul id="nav-links" class="links">
+    {
+      site.nav.map(({ label, href }) => (
+        <li>
+          <a href={href} aria-current={path.startsWith(href) ? 'page' : undefined}>
+            {label}
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</nav>
+
+<script>
+  const toggle = document.querySelector<HTMLButtonElement>('.nav .toggle');
+  toggle?.addEventListener('click', () => {
+    const open = toggle.getAttribute('aria-expanded') === 'true';
+    toggle.setAttribute('aria-expanded', String(!open));
+  });
+</script>
+
+<style>
+  .nav {
+    position: absolute;
+    inset: 0 0 auto 0;
+    z-index: 10;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.75rem var(--gutter);
+  }
+
+  .brand img {
+    width: 150px;
+  }
+
+  .toggle {
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    color: #fff;
+    background: none;
+    border: 0;
+    cursor: pointer;
+  }
+
+  .links {
+    display: none;
+    flex-basis: 100%;
+    margin: 0;
+    padding: 0.5rem 0;
+    list-style: none;
+    background: rgb(0 0 0 / 0.85);
+  }
+
+  .toggle[aria-expanded='true'] + .links {
+    display: block;
+  }
+
+  .links a {
+    display: block;
+    padding: 0.75rem 1rem;
+    color: #fff;
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-shadow: 0 0 2px rgb(0 133 161 / 0.75);
+  }
+
+  .links a:hover,
+  .links a[aria-current='page'] {
+    color: var(--color-accent);
+  }
+
+  @media (min-width: 768px) {
+    .toggle {
+      display: none;
+    }
+
+    .links {
+      display: flex;
+      flex-basis: auto;
+      padding: 0;
+      background: none;
+    }
+
+    .links a {
+      padding: 1.25rem;
+    }
+  }
+</style>

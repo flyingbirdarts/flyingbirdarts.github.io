@@ -1,0 +1,45 @@
+---
+import '@fontsource/open-sans/300.css';
+import '@fontsource/open-sans/400.css';
+import '@fontsource/open-sans/800.css';
+import '@fontsource/josefin-sans/400.css';
+import '@fontsource/josefin-sans/600.css';
+import '../styles/global.css';
+import Analytics from '../components/Analytics.astro';
+import Footer from '../components/Footer.astro';
+import Nav from '../components/Nav.astro';
+import { site } from '../site';
+
+interface Props {
+  title?: string;
+  description?: string;
+  /** Hide the footer, e.g. on the full-screen home page. */
+  bare?: boolean;
+}
+
+const { title, description = site.description, bare = false } = Astro.props;
+const pageTitle = title ? `${title} - ${site.title}` : site.title;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{pageTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" href="/favicon.ico" />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:type" content="website" />
+    <Analytics />
+  </head>
+  <body>
+    <Nav />
+    <slot />
+    {!bare && <Footer />}
+  </body>
+</html>

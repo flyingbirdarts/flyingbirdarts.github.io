@@ -1,0 +1,23 @@
+title: Dusk Monsoon
+year: 2002
+label: Simla House, 2002
+order: 3
+cover: ../../assets/music/covers/duskmonsooncover2.jpg
+header: ../../assets/headers/duskmonsoon-bg.jpg
+spotifyAlbumId: 5OF1ExszlGlyNiDa8rGB8b
+tracks:
+  - title: Shree Raga - Vilambit in Jhumra Tal
+    length: 0:30
+    file: shree_raga-vilambit_in_jhumra_tal.mp3
+  - title: Shree Raga - Drut Gat in Tin Tal
+    length: 0:30
+    file: shree_raga-drut_gat_in_tin_tal.mp3
+  - title: Raga Mian ki Malhar - Vilambit Ek Tal
+    length: 0:30
+    file: raga_mian_ki_malhar-vilambit_ek_tal.mp3
+  - title: Raga Mian ki Malhar - Drut Gatin Tin Tal
+    length: 0:30
+    file: raga_mian_ki_malhar-drut_gatin_tin_tal.mp3
+  - title: Nomadic Melody
+    length: 0:30
+    file: nomadic_melody.mp3

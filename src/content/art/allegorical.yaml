@@ -1,0 +1,93 @@
+title: Allegorical
+order: 1
+cover: ../../assets/art/_covers/allegoricallogo2.jpg
+header: ../../assets/art/allegorical/bg.jpg
+paintings:
+  - image: ../../assets/art/allegorical/30yearson(firdoze).jpg
+    title: 30 Years On (Firdoze)
+    material: Oil on linen
+    dimensions: 51 x 45
+  - image: ../../assets/art/allegorical/3peaks.jpg
+    title: 3 Peaks
+    material: Acrylic on canvas
+    dimensions: 25 x 18
+  - image: ../../assets/art/allegorical/againstgravity.jpg
+    title: Against Gravity
+    material: Acrylic on canvas
+    dimensions: 51 x 48
+  - image: ../../assets/art/allegorical/alberodellavita.jpg
+    title: Albero Della Vita
+    material: Oil on canvas
+    dimensions: 56 x 44
+  - image: ../../assets/art/allegorical/autumn.jpg
+    title: Autumn
+    material: Oil on canvas
+    dimensions: 48 x 36
+  - image: ../../assets/art/allegorical/danceofthechildren.jpg
+    title: Dance of the Children
+    material: Oil on canvas
+    dimensions: 68 x 48
+  - image: ../../assets/art/allegorical/dancers.jpg
+    title: Dancers
+    material: Oil on canvas
+    dimensions: 56 x 42¼
+  - image: ../../assets/art/allegorical/eastmeetswest.jpg
+    title: East Meets West
+    material: Oil on canvas
+    dimensions: 68 x 48
+  - image: ../../assets/art/allegorical/harvestmoon.jpg
+    title: Harvest Moon
+    material: Oil on linen
+    dimensions: 15 x 14
+  - image: ../../assets/art/allegorical/imageswithin.jpg
+    title: Images Within
+    material: Oil on canvas
+    dimensions: 56 x 54
+  - image: ../../assets/art/allegorical/ladolcevita.jpg
+    title: La Dolce Vita
+    material: Oil on hessian
+    dimensions: 53¼ x 38¼
+  - image: ../../assets/art/allegorical/metamorphosis.jpg
+    title: Metamorphosis
+    material: Acrylic on canvas
+    dimensions: 68 x 48
+  - image: ../../assets/art/allegorical/primavera.jpg
+    title: Primavera
+    material: India Ink on watercolor paper
+    dimensions: 41½ x 55½
+  - image: ../../assets/art/allegorical/shadowsandlight.jpg
+    title: Shadows and Light
+    material: Acrylic on canvas
+    dimensions: 56 x 48
+  - image: ../../assets/art/allegorical/studyinredoxide.jpg
+    title: Study in Red Oxide
+    material: Acrylic on watercolor paper
+    dimensions: 42 x 36
+  - image: ../../assets/art/allegorical/studyinredyellowandgreen.jpg
+    title: Study in Red, Yellow, and Green
+    material: Acrylic on watercolor paper
+    dimensions: 42 x 36
+  - image: ../../assets/art/allegorical/sundancers.jpg
+    title: Sun Dancers
+    material: Acrylic on canvas
+    dimensions: 56 x 42
+  - image: ../../assets/art/allegorical/themusereturns.jpg
+    title: The Muse Returns
+    material: Oil on masonite
+    dimensions: 48 x 48
+  - image: ../../assets/art/allegorical/tigerseye.jpg
+    title: Tiger's Eye
+    material: Acrylic on watercolor paper
+    dimensions: 52 x 41
+  - image: ../../assets/art/allegorical/transitofvenus.jpg
+    title: Transit of Venus
+    material: Acrylic on canvas
+    dimensions: 48 x 24
+  - image: ../../assets/art/allegorical/treeandriveroflife.jpg
+    title: Tree and River of Life
+    material: Oil on canvas
+    dimensions: 60 x 60
+  - image: ../../assets/art/allegorical/trilogy.jpg
+    title: Trilogy
+    material: Oil on canvas
+    dimensions: 68 x 49

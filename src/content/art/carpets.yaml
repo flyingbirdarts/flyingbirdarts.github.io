@@ -1,0 +1,45 @@
+title: Carpets
+order: 5
+cover: ../../assets/art/_covers/carpetlogo2.jpg
+header: ../../assets/art/carpets/bg.jpg
+paintings:
+  - image: ../../assets/art/carpets/15starandanimalcarpet.jpg
+    title: 15 Star and Animal Geometry
+    material: Oil on canvas
+    dimensions: 72 x 48
+  - image: ../../assets/art/carpets/armeniancarpet.jpg
+    title: Armenian Carpet
+    material: Oil on canvas
+    dimensions: 68 x 50
+  - image: ../../assets/art/carpets/birdofparadise.jpg
+    title: Bird of Paradise
+    material: Oil on canvas
+    dimensions: 56 x 44
+  - image: ../../assets/art/carpets/dancersdragonsandbirds.jpg
+    title: Armenian Dragon and Phoenix Carpet
+    material: Oil on canvas
+    dimensions: 56 x 44
+  - image: ../../assets/art/carpets/dragonclover.jpg
+    title: Dragon Clover
+    material: Oil on canvas
+    dimensions: 56 x 44
+  - image: ../../assets/art/carpets/firdoze.jpg
+    title: Firdoze II
+    material: India Ink on watercolor paper
+    dimensions: 28 x 22
+  - image: ../../assets/art/carpets/handsandfeet.jpg
+    title: Hands and Feet
+    material: Oil on canvas
+    dimensions: 51 x 45
+  - image: ../../assets/art/carpets/namazlik.jpg
+    title: Namazlik
+    material: India Ink on watercolor paper
+    dimensions: 65 x 52
+  - image: ../../assets/art/carpets/springcarpet.jpg
+    title: Spring Carpet
+    material: Oil on linen
+    dimensions: 72 x 48
+  - image: ../../assets/art/carpets/untitled.jpg
+    title: Untitled
+    material: India Ink on watercolor paper
+    dimensions: 30 x 22

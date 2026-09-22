@@ -1,0 +1,78 @@
+---
+import { getCollection, type CollectionEntry } from 'astro:content';
+import PageLayout from '../../layouts/PageLayout.astro';
+
+export async function getStaticPaths() {
+  const albums = await getCollection('albums');
+  return albums.map((entry) => ({ params: { slug: entry.id }, props: { entry } }));
+}
+
+interface Props {
+  entry: CollectionEntry<'albums'>;
+}
+
+const { id, data } = Astro.props.entry;
+---
+
+<PageLayout title={data.title} subtitle={data.label} headerImage={data.header}>
+  <!-- TODO: replace with the AudioPlaylist component. -->
+  <h2>Preview tracks</h2>
+  <ol class="tracks">
+    {
+      data.tracks.map((t) => (
+        <li>
+          <span class="title">{t.title}</span>
+          <span class="length">{t.length}</span>
+          <audio controls preload="none" src={`/music/${id}/tracks/${t.file}`} />
+        </li>
+      ))
+    }
+  </ol>
+
+  {
+    data.spotifyAlbumId && (
+      <section class="spotify">
+        <h3>Listen on Spotify</h3>
+        <iframe
+          title={`${data.title} on Spotify`}
+          src={`https://open.spotify.com/embed/album/${data.spotifyAlbumId}`}
+          width="100%"
+          height="380"
+          loading="lazy"
+          allow="encrypted-media"
+        />
+      </section>
+    )
+  }
+</PageLayout>
+
+<style>
+  .tracks {
+    max-width: 40rem;
+    padding-left: 1.5rem;
+  }
+
+  .tracks li {
+    margin-bottom: 1rem;
+  }
+
+  .length {
+    margin-left: 0.5rem;
+    color: var(--color-muted);
+  }
+
+  audio {
+    display: block;
+    width: 100%;
+    margin-top: 0.25rem;
+  }
+
+  .spotify {
+    max-width: 25rem;
+    margin-top: 3rem;
+  }
+
+  iframe {
+    border: 0;
+  }
+</style>

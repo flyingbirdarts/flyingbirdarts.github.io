@@ -1,0 +1,57 @@
+---
+import { Image } from 'astro:assets';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { site } from '../site';
+import bg5 from '../assets/home/bg5.jpg';
+
+// TODO: port the Ken Burns slideshow (bg5, bg1, bg4, bg2, bg3, paulflute_colorado).
+---
+
+<BaseLayout bare>
+  <main class="hero">
+    <Image src={bg5} alt="" widths={[640, 1024, 1600, 2400]} sizes="100vw" loading="eager" fetchpriority="high" />
+    <div class="intro">
+      <h1>{site.title}</h1>
+      <p class="subtitle">{site.subtitle}</p>
+      <p>Art and Music</p>
+    </div>
+  </main>
+</BaseLayout>
+
+<style>
+  .hero {
+    position: relative;
+    height: 100dvh;
+    overflow: hidden;
+  }
+
+  .hero img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .intro {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    padding: 0 var(--gutter) clamp(1.5rem, 5vh, 3rem);
+    font-family: var(--font-display);
+    color: #ddd;
+    text-shadow: 0.1em 0.1em 0.2em #000;
+  }
+
+  h1 {
+    margin: 0 0 0.25em;
+    font-size: clamp(2rem, 1rem + 5vw, 4.5rem);
+    font-weight: 600;
+    letter-spacing: 0.1em;
+  }
+
+  .subtitle {
+    margin: 0 0 0.5em;
+    font-size: clamp(1.1rem, 1rem + 1vw, 1.75rem);
+  }
+</style>

@@ -1,0 +1,25 @@
+title: Ragas For You
+year: 1996
+label: Flying Bird Music, 1996
+order: 2
+cover: ../../assets/music/covers/ragasforyoucover2.jpg
+header: ../../assets/headers/ragasforyou-bg.jpg
+tracks:
+  - title: Raga Marwa - Vilambit Jhumra
+    length: 0:30
+    file: raga_marwa_in_vilambit_jhumra.mp3
+  - title: Raga Marwa - Drut Teentaal
+    length: 0:30
+    file: raga_marwa_in_drut_teentaal.mp3
+  - title: Hooghlie Ka Ghana
+    length: 0:30
+    file: hooghlie_ka_ghana.mp3
+  - title: Raga Kalavati - Choutaal
+    length: 0:30
+    file: raga_kalavati_in_choutaal.mp3
+  - title: Raga Deepavali - Drut Teentaal
+    length: 0:30
+    file: raga_deepavali_in_drut_teentaal.mp3
+  - title: Nepalese Folk Song
+    length: 0:30
+    file: nepalese_folk_song.mp3
