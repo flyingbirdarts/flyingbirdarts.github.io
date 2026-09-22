@@ -1,18 +1,14 @@
 ---
-import { Image } from 'astro:assets';
-import logo from '../assets/logo.png';
 import { site } from '../site';
 
 const path = Astro.url.pathname;
 ---
 
 <nav class="nav" aria-label="Main">
-  <a class="brand" href="/" title="Home">
-    <Image src={logo} alt={site.title} width={150} loading="eager" />
-  </a>
+  <a class="brand" href="/">{site.title}</a>
   <button class="toggle" type="button" aria-expanded="false" aria-controls="nav-links">
     <span class="visually-hidden">Menu</span>
-    <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true">
+    <svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true">
       <path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
     </svg>
   </button>
@@ -46,11 +42,26 @@ const path = Astro.url.pathname;
     flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
-    padding: 0.75rem var(--gutter);
+    gap: 0.5rem 1rem;
+    padding: 1rem var(--gutter) 2.5rem;
+    font-family: var(--font-display);
+    color: #fff;
+    /* Soft fade keeps the nav legible over bright artwork. */
+    background: linear-gradient(to bottom, rgb(0 0 0 / 0.6), transparent);
+    text-shadow: 0 1px 3px rgb(0 0 0 / 0.9);
   }
 
-  .brand img {
-    width: 150px;
+  .brand {
+    padding-block: 0.25rem;
+    font-size: clamp(1.25rem, 1rem + 1vw, 1.75rem);
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    color: #fff;
+  }
+
+  .brand:hover,
+  .brand:focus-visible {
+    color: var(--color-accent);
   }
 
   .toggle {
@@ -62,15 +73,17 @@ const path = Astro.url.pathname;
     background: none;
     border: 0;
     cursor: pointer;
+    filter: drop-shadow(0 1px 2px rgb(0 0 0 / 0.9));
   }
 
   .links {
     display: none;
     flex-basis: 100%;
     margin: 0;
-    padding: 0.5rem 0;
+    padding: 0.5rem 1rem;
     list-style: none;
     background: rgb(0 0 0 / 0.85);
+    backdrop-filter: blur(6px);
   }
 
   .toggle[aria-expanded='true'] + .links {
@@ -78,19 +91,26 @@ const path = Astro.url.pathname;
   }
 
   .links a {
-    display: block;
-    padding: 0.75rem 1rem;
-    color: #fff;
-    font-size: 0.8rem;
-    font-weight: 800;
-    letter-spacing: 1px;
+    display: inline-block;
+    padding: 0.75rem 0 0.5rem;
+    font-size: clamp(1rem, 0.9rem + 0.45vw, 1.25rem);
+    font-weight: 600;
+    letter-spacing: 0.2em;
     text-transform: uppercase;
-    text-shadow: 0 0 2px rgb(0 133 161 / 0.75);
+    color: #fff;
+    border-bottom: 3px solid transparent;
+    transition:
+      color 0.2s,
+      border-color 0.2s;
   }
 
   .links a:hover,
-  .links a[aria-current='page'] {
+  .links a:focus-visible {
     color: var(--color-accent);
+  }
+
+  .links a[aria-current='page'] {
+    border-bottom-color: var(--color-accent);
   }
 
   @media (min-width: 768px) {
@@ -100,13 +120,11 @@ const path = Astro.url.pathname;
 
     .links {
       display: flex;
+      gap: clamp(1.25rem, 2.5vw, 2.25rem);
       flex-basis: auto;
       padding: 0;
       background: none;
-    }
-
-    .links a {
-      padding: 1.25rem;
+      backdrop-filter: none;
     }
   }
 </style>
