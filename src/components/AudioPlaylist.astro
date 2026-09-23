@@ -1,0 +1,247 @@
+---
+// One audio player with a playlist: pick a track, prev/next, and auto-advance.
+// Tracks are plain links to the MP3s, so they still work without JavaScript.
+import type { ImageMetadata } from 'astro';
+import { getImage } from 'astro:assets';
+import { site } from '../site';
+
+interface Track {
+  title: string;
+  length: string;
+  src: string;
+}
+
+interface Props {
+  album: string;
+  tracks: Track[];
+  /** Shown on phone lock screens and media notifications. */
+  cover: ImageMetadata;
+}
+
+const { album, tracks, cover } = Astro.props;
+const artwork = await getImage({ src: cover, width: 512, format: 'webp' });
+const pad = (n: number) => String(n).padStart(2, '0');
+---
+
+<div
+  class="player"
+  data-playlist
+  data-album={album}
+  data-artist={site.title}
+  data-artwork={artwork.src}
+>
+  <div class="now">
+    <span class="status" aria-live="polite">Ready to play</span>
+    <strong class="now-title">{tracks[0]?.title}</strong>
+  </div>
+
+  <audio controls preload="none" src={tracks[0]?.src}></audio>
+
+  <div class="skip">
+    <button type="button" class="prev">
+      <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M6 5h2v14H6zM20 5v14L9 12z" fill="currentColor"></path></svg>
+      Previous
+    </button>
+    <button type="button" class="next">
+      Next
+      <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M16 5h2v14h-2zM4 5v14l11-7z" fill="currentColor"></path></svg>
+    </button>
+  </div>
+
+  <ol class="tracks">
+    {
+      tracks.map((t, i) => (
+        <li>
+          <a href={t.src} data-title={t.title} aria-current={i === 0 ? 'true' : undefined}>
+            <span class="num">{pad(i + 1)}</span>
+            <span class="title">{t.title}</span>
+            <span class="length">{t.length}</span>
+          </a>
+        </li>
+      ))
+    }
+  </ol>
+</div>
+
+<script>
+  document.querySelectorAll<HTMLElement>('[data-playlist]').forEach((player) => {
+    const audio = player.querySelector('audio')!;
+    const status = player.querySelector<HTMLElement>('.status')!;
+    const nowTitle = player.querySelector<HTMLElement>('.now-title')!;
+    const links = [...player.querySelectorAll<HTMLAnchorElement>('.tracks a')];
+    const { album, artist, artwork } = player.dataset;
+    let index = 0;
+
+    // Title and cover shown on phone lock screens and media notifications.
+    const setMediaInfo = () => {
+      if (!('mediaSession' in navigator)) return;
+      navigator.mediaSession.metadata = new MediaMetadata({
+        title: links[index].dataset.title,
+        artist,
+        album,
+        artwork: artwork ? [{ src: artwork, sizes: '512x512', type: 'image/webp' }] : [],
+      });
+    };
+
+    const load = (i: number, autoplay: boolean) => {
+      index = i;
+      const link = links[i];
+      links.forEach((a) => a.removeAttribute('aria-current'));
+      link.setAttribute('aria-current', 'true');
+      nowTitle.textContent = link.dataset.title ?? '';
+      audio.src = link.href;
+      setMediaInfo();
+      if (autoplay) audio.play().catch(() => {});
+    };
+
+    const next = () => {
+      if (index + 1 < links.length) load(index + 1, !audio.paused);
+    };
+    const prev = () => {
+      // Like most players: restart the track unless we're right at its start.
+      if (audio.currentTime > 3 || index === 0) audio.currentTime = 0;
+      else load(index - 1, !audio.paused);
+    };
+
+    links.forEach((link, i) =>
+      link.addEventListener('click', (event) => {
+        event.preventDefault();
+        if (i === index && !audio.paused) audio.pause();
+        else if (i === index) audio.play().catch(() => {});
+        else load(i, true);
+      }),
+    );
+    player.querySelector('.next')!.addEventListener('click', next);
+    player.querySelector('.prev')!.addEventListener('click', prev);
+
+    audio.addEventListener('play', () => {
+      setMediaInfo();
+      status.textContent = 'Now playing';
+      player.classList.add('is-playing');
+      // Only one album preview plays at a time.
+      document.querySelectorAll('audio').forEach((other) => other !== audio && other.pause());
+    });
+    audio.addEventListener('pause', () => {
+      status.textContent = 'Paused';
+      player.classList.remove('is-playing');
+    });
+    audio.addEventListener('ended', () => {
+      if (index + 1 < links.length) load(index + 1, true);
+      else {
+        load(0, false);
+        status.textContent = 'Finished';
+      }
+    });
+
+    if ('mediaSession' in navigator) {
+      navigator.mediaSession.setActionHandler('nexttrack', next);
+      navigator.mediaSession.setActionHandler('previoustrack', prev);
+    }
+  });
+</script>
+
+<style>
+  .player {
+    padding: clamp(1rem, 3vw, 1.5rem);
+    background: #111;
+    border: 1px solid #262626;
+    border-radius: 8px;
+  }
+
+  .now {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    margin-bottom: 1rem;
+  }
+
+  .status {
+    font-family: var(--font-display);
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--color-muted);
+  }
+
+  .is-playing .status {
+    color: var(--color-accent);
+  }
+
+  .now-title {
+    font-size: clamp(1.1rem, 1rem + 0.5vw, 1.35rem);
+  }
+
+  audio {
+    display: block;
+    width: 100%;
+    color-scheme: dark;
+  }
+
+  .skip {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    margin: 0.75rem 0 1.25rem;
+  }
+
+  .skip button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    min-height: 44px;
+    padding: 0 1rem;
+    font: inherit;
+    font-size: 0.9rem;
+    color: var(--color-text);
+    background: none;
+    border: 1px solid #444;
+    border-radius: 999px;
+    cursor: pointer;
+  }
+
+  .skip button:hover,
+  .skip button:focus-visible {
+    color: var(--color-accent);
+    border-color: var(--color-accent);
+  }
+
+  .tracks {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    border-top: 1px solid #262626;
+  }
+
+  .tracks a {
+    display: grid;
+    grid-template-columns: 2rem 1fr auto;
+    gap: 0.75rem;
+    align-items: center;
+    min-height: 48px;
+    padding: 0.6rem 0.5rem;
+    color: var(--color-text);
+    border-bottom: 1px solid #262626;
+  }
+
+  .tracks a:hover,
+  .tracks a:focus-visible {
+    color: #fff;
+    background: #1a1a1a;
+  }
+
+  .tracks a[aria-current='true'] {
+    color: var(--color-accent);
+  }
+
+  .num,
+  .length {
+    font-size: 0.85rem;
+    color: var(--color-muted);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .tracks a[aria-current='true'] .num {
+    color: var(--color-accent);
+  }
+</style>

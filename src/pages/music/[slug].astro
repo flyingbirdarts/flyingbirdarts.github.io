@@ -1,5 +1,7 @@
 ---
+import { Image } from 'astro:assets';
 import { getCollection, type CollectionEntry } from 'astro:content';
+import AudioPlaylist from '../../components/AudioPlaylist.astro';
 import PageLayout from '../../layouts/PageLayout.astro';
 
 export async function getStaticPaths() {
@@ -12,67 +14,91 @@ interface Props {
 }
 
 const { id, data } = Astro.props.entry;
+const tracks = data.tracks.map((t) => ({ ...t, src: `/music/${id}/tracks/${t.file}` }));
 ---
 
 <PageLayout title={data.title} subtitle={data.label} headerImage={data.header}>
-  <!-- TODO: replace with the AudioPlaylist component. -->
-  <h2>Preview tracks</h2>
-  <ol class="tracks">
-    {
-      data.tracks.map((t) => (
-        <li>
-          <span class="title">{t.title}</span>
-          <span class="length">{t.length}</span>
-          <audio controls preload="none" src={`/music/${id}/tracks/${t.file}`} />
-        </li>
-      ))
-    }
-  </ol>
+  <div class="album">
+    <div class="cover">
+      <Image
+        src={data.cover}
+        alt={`${data.title} album cover`}
+        widths={[300, 600]}
+        sizes="(min-width: 900px) 24rem, 100vw"
+        loading="eager"
+      />
+    </div>
 
-  {
-    data.spotifyAlbumId && (
-      <section class="spotify">
-        <h3>Listen on Spotify</h3>
-        <iframe
-          title={`${data.title} on Spotify`}
-          src={`https://open.spotify.com/embed/album/${data.spotifyAlbumId}`}
-          width="100%"
-          height="380"
-          loading="lazy"
-          allow="encrypted-media"
-        />
-      </section>
-    )
-  }
+    <div class="listen">
+      <h2>Preview tracks</h2>
+      <AudioPlaylist album={data.title} tracks={tracks} cover={data.cover} />
+
+      {
+        data.spotifyAlbumId && (
+          <section class="spotify">
+            <h3>Listen to the full album on Spotify</h3>
+            <iframe
+              title={`${data.title} on Spotify`}
+              src={`https://open.spotify.com/embed/album/${data.spotifyAlbumId}`}
+              width="100%"
+              height="380"
+              loading="lazy"
+              allow="encrypted-media"
+            />
+          </section>
+        )
+      }
+    </div>
+  </div>
 </PageLayout>
 
 <style>
-  .tracks {
-    max-width: 40rem;
-    padding-left: 1.5rem;
+  .album {
+    display: grid;
+    gap: 2rem 3rem;
   }
 
-  .tracks li {
-    margin-bottom: 1rem;
+  .cover {
+    max-width: 24rem;
   }
 
-  .length {
-    margin-left: 0.5rem;
-    color: var(--color-muted);
-  }
-
-  audio {
-    display: block;
+  .cover img {
     width: 100%;
-    margin-top: 0.25rem;
+    box-shadow: 0 10px 40px rgb(0 0 0 / 0.8);
+  }
+
+  h2 {
+    margin: 0 0 1rem;
+    font-family: var(--font-display);
+    font-size: 1.6rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
   }
 
   .spotify {
-    max-width: 25rem;
-    margin-top: 3rem;
+    margin-top: 2.5rem;
+  }
+
+  .spotify h3 {
+    margin: 0 0 1rem;
+    font-size: 1.1rem;
   }
 
   iframe {
     border: 0;
+    border-radius: 12px;
+  }
+
+  @media (min-width: 900px) {
+    .album {
+      grid-template-columns: 24rem minmax(0, 1fr);
+      align-items: start;
+    }
+
+    .cover {
+      position: sticky;
+      top: 2rem;
+    }
   }
 </style>
