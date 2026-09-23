@@ -4,6 +4,18 @@ order: 7
 cover: ../../assets/art/_covers/mountainslogo2.jpg
 header: ../../assets/art/mountains/bg.jpg
 paintings:
+  - image: ../../assets/art/mountains/flyingabovetheglacier.jpg
+    title: Flying Above the Glacier
+    material: Oil on canvas
+    dimensions: 20 x 16
+  - image: ../../assets/art/mountains/risingmooninthehimalaya.jpg
+    title: Rising Moon in the Himalaya
+    material: Oil on canvas
+    dimensions: 20 x 16
+  - image: ../../assets/art/mountains/trolambauglacierandpenatentes.jpg
+    title: Trolambau Glacier and Penitentes
+    material: Oil on canvas
+    dimensions: 20 x 16
   - image: ../../assets/art/mountains/tashilabtsa5770m.jpg
     title: Tashi Labtsa
     material: Acrylic on canvas

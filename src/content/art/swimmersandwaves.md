@@ -4,6 +4,10 @@ order: 9
 cover: ../../assets/art/_covers/swimmersandwaveslogo2.jpg
 header: ../../assets/art/swimmersandwaves/bg.jpg
 paintings:
+  - image: ../../assets/art/swimmersandwaves/inthewave.jpg
+    title: In the Wave
+    material: Oil on canvas
+    dimensions: 20 x 16
   - image: ../../assets/art/swimmersandwaves/artistandreef.jpg
     title: Artist and Reef
     material: Oil on masonite

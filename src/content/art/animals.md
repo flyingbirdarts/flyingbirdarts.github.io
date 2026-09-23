@@ -4,6 +4,10 @@ order: 3
 cover: ../../assets/art/_covers/animalslogo2.jpg
 header: ../../assets/art/animals/bg.jpg
 paintings:
+  - image: ../../assets/art/animals/birdsandfishes.jpg
+    title: Birds and Fishes
+    material: Oil on canvas
+    dimensions: 20 x 16
   - image: ../../assets/art/animals/gallopingsteed.jpg
     title: Galloping Steed
     material: Oil on canvas
