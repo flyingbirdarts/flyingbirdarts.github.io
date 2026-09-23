@@ -12,6 +12,7 @@ paintings:
     title: Fenway Park
     material: Oil on canvas
     dimensions: 64 x 56½
+    link: /gallery/fenwaypark/
   - image: ../../assets/art/baseball/jewelinthecity.jpg
     title: Jewel in the City
     material: Oil on canvas
@@ -20,6 +21,7 @@ paintings:
     title: Old Yankee Stadium
     material: Oil on canvas
     dimensions: 68 x 48
+    link: /gallery/oldyankeestadium/
   - image: ../../assets/art/baseball/outinleftfield.jpg
     title: Out in Left Field
     material: Oil on hessian

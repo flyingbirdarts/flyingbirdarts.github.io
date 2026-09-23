@@ -17,7 +17,7 @@ const { id, data } = Astro.props.entry;
 const tracks = data.tracks.map((t) => ({ ...t, src: `/music/${id}/tracks/${t.file}` }));
 ---
 
-<PageLayout title={data.title} subtitle={data.label} headerImage={data.header}>
+<PageLayout title={data.title} subtitle={data.label} headerImage={data.header} shareImage={data.cover}>
   <div class="album">
     <div class="cover">
       <Image

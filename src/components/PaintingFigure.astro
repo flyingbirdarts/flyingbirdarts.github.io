@@ -11,6 +11,8 @@ export interface Painting {
   pid: string;
   /** URL of the native-size WebP opened in the lightbox. */
   full: string;
+  /** Page with more about this painting, linked from the lightbox caption. */
+  link?: string;
 }
 
 interface Props {
@@ -25,7 +27,13 @@ const { painting: p, sizes, compact = false, eager = false } = Astro.props;
 ---
 
 <figure>
-  <a href={p.full} data-pid={p.pid} data-pswp-width={p.image.width} data-pswp-height={p.image.height}>
+  <a
+    href={p.full}
+    data-pid={p.pid}
+    data-pswp-width={p.image.width}
+    data-pswp-height={p.image.height}
+    data-link={p.link}
+  >
     <Image src={p.image} alt={p.title} widths={[300, 600]} sizes={sizes} loading={eager ? 'eager' : 'lazy'} />
   </a>
   <figcaption>

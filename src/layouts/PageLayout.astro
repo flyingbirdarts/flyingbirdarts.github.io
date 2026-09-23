@@ -8,12 +8,14 @@ interface Props {
   subtitle?: string;
   headerImage: ImageMetadata;
   description?: string;
+  /** Link preview image; defaults to the header image. */
+  shareImage?: ImageMetadata;
 }
 
-const { title, subtitle, headerImage, description } = Astro.props;
+const { title, subtitle, headerImage, description, shareImage = headerImage } = Astro.props;
 ---
 
-<BaseLayout title={title} description={description}>
+<BaseLayout title={title} description={description} shareImage={shareImage}>
   <PageHeader title={title} subtitle={subtitle} image={headerImage} />
   <main class="container">
     <slot />

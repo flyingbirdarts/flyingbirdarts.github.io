@@ -20,6 +20,8 @@ const art = defineCollection({
           title: z.string(),
           material: z.string().optional(),
           dimensions: z.string().optional(),
+          /** Page with more about this painting, e.g. its featured-work page. */
+          link: z.string().optional(),
         }),
       ),
     }),

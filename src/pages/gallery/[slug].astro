@@ -41,6 +41,7 @@ const paintings: Painting[] = await Promise.all(
       pid: count > 1 ? `${base}-${count}` : base,
       full: (await getImage({ src: p.image, format: 'webp' })).src,
       details: [p.material, p.dimensions].filter(Boolean).join(', '),
+      link: p.link,
     };
   }),
 );

@@ -62,7 +62,8 @@ import { site } from '../site';
           pswp.on('resize', place);
 
           pswp.on('change', () => {
-            const figure = pswp.currSlide?.data.element?.closest('figure');
+            const link = pswp.currSlide?.data.element;
+            const figure = link?.closest('figure');
             const title = figure?.querySelector('figcaption strong')?.textContent ?? '';
             const details = figure?.querySelector('figcaption span')?.textContent ?? '';
             el.replaceChildren();
@@ -75,6 +76,14 @@ import { site } from '../site';
               detail.className = 'details';
               detail.textContent = details;
               el.append(detail);
+            }
+
+            if (link?.dataset.link) {
+              const more = document.createElement('a');
+              more.className = 'more';
+              more.href = link.dataset.link;
+              more.textContent = 'Read about this painting →';
+              el.append(more);
             }
 
             const footer = document.createElement('span');
@@ -157,6 +166,11 @@ import { site } from '../site';
     font-family: Times, serif;
     font-style: italic;
     color: #bbb;
+  }
+
+  .pswp__painting-caption .more {
+    margin-top: 0.4rem;
+    font-weight: 600;
   }
 
   .pswp__painting-caption .footer {

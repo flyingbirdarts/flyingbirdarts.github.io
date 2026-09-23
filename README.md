@@ -22,6 +22,7 @@ npx astro check  # type-check
 | Page header images | `src/assets/headers/` |
 | Home page images | `src/assets/home/` |
 | Site title, nav, email, analytics | `src/site.ts` |
+| Sitemap and `/llms.txt` | Generated at build time from the content above (`astro.config.mjs`, `src/pages/llms.txt.ts`) |
 
 To add a painting, drop the image into `src/assets/art/<slug>/` and add an entry to the `paintings` list in that collection's front matter:
 
@@ -31,6 +32,8 @@ To add a painting, drop the image into `src/assets/art/<slug>/` and add an entry
     material: Acrylic on canvas
     dimensions: 40 x 30
 ```
+
+A painting can also have `link: /gallery/<slug>/`, which adds a "Read about this painting" link to its lightbox caption.
 
 Text written below a collection's front matter appears above its gallery. Set `featured: true` for a single work (like Fenway Park): the first painting is shown beside the text with a "Prints available" box, and the rest are shown as close-up details.
 
