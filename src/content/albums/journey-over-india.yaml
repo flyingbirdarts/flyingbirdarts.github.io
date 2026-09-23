@@ -1,0 +1,31 @@
+title: Journey Over India
+year: 1994
+label: Flying Bird Music, 1994
+order: 1
+cover: ../../assets/music/covers/journeyoverindiacover4.jpg
+header: ../../assets/headers/journeyoverindia-bg.jpg
+tracks:
+  - title: Bilawal (Morning Raga)
+    length: 0:30
+    file: bilawal.mp3
+  - title: Assamese Folk Song
+    length: 0:30
+    file: assamese_folk_song.mp3
+  - title: Song of Bengal
+    length: 0:30
+    file: song_of_bengal.mp3
+  - title: Noah's Song
+    length: 0:30
+    file: noahs_song.mp3
+  - title: Hindal (Spring Raga or Evening Raga)
+    length: 0:30
+    file: hindal.mp3
+  - title: Armenian Chant
+    length: 0:30
+    file: armenian_chant.mp3
+  - title: Dhani
+    length: 0:30
+    file: dhani.mp3
+  - title: Bilawal Dhun
+    length: 0:30
+    file: bilawal_dhun.mp3

@@ -1,0 +1,73 @@
+/* Base styles carried over from the Jekyll theme (css/main.css), rewritten mobile-first. */
+:root {
+  --color-bg: #000;
+  --color-text: #eee;
+  --color-muted: #999;
+  --color-link: #b3123a;
+  --color-link-hover: #fff;
+  --color-accent: #f2a31b;
+  --font-body: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --font-display: 'Josefin Sans', sans-serif;
+  --gutter: clamp(1rem, 4vw, 2.5rem);
+  --content-width: 72rem;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
+  line-height: 1.6;
+  color: var(--color-text);
+  background-color: var(--color-bg);
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+a {
+  color: var(--color-link);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+a:hover,
+a:focus-visible {
+  color: var(--color-link-hover);
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+.container {
+  width: 100%;
+  max-width: var(--content-width);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}

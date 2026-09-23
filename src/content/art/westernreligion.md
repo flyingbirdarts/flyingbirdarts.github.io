@@ -1,0 +1,63 @@
+---
+title: Western Religion
+order: 10
+cover: ../../assets/art/_covers/westernreligionlogo2.jpg
+header: ../../assets/art/westernreligion/bg.jpg
+paintings:
+  - image: ../../assets/art/westernreligion/annunciation1.jpg
+    title: Annunciation I
+    material: India Ink on paper
+    dimensions: 30 x 22½
+  - image: ../../assets/art/westernreligion/annunciation2.jpg
+    title: Annunciation II
+    material: India Ink on paper
+    dimensions: 52 x 40½
+  - image: ../../assets/art/westernreligion/bathedinlight.jpg
+    title: Bathed in Light
+    material: Oil on masonite
+    dimensions: 32¼ x 31
+  - image: ../../assets/art/westernreligion/bluemadonna.jpg
+    title: Blue Madonna
+    material: Oil on canvas
+    dimensions: 32½ x 37½
+  - image: ../../assets/art/westernreligion/holytrinity.jpg
+    title: Holy Trinity
+    material: Oil on masonite
+    dimensions: 28 x 22
+  - image: ../../assets/art/westernreligion/lamoreneta1.jpg
+    title: La Moreneta I
+    material: Oil on canvas
+    dimensions: 42 x 56
+  - image: ../../assets/art/westernreligion/lamoreneta2.jpg
+    title: La Moreneta II
+    material: Oil on canvas
+    dimensions: 34 x 41
+  - image: ../../assets/art/westernreligion/ma.jpg
+    title: Ma
+    material: Oil on hessian
+    dimensions: 35 x 47
+  - image: ../../assets/art/westernreligion/madonnaofthesea.jpg
+    title: Madonna of the Sea
+    material: Acrylic on paper
+    dimensions: 44½ x 55½
+  - image: ../../assets/art/westernreligion/redangel.jpg
+    title: Red Angel
+    material: Oil on masonite
+    dimensions: 32 x 32
+  - image: ../../assets/art/westernreligion/redchrist.jpg
+    title: Red Christ
+    material: Acrylic on canvas
+    dimensions: 55 x 30
+  - image: ../../assets/art/westernreligion/thelastsupper1.jpg
+    title: The Last Supper I
+    material: Oil on canvas
+    dimensions: 56 x 47¾
+  - image: ../../assets/art/westernreligion/thelastsupper2.jpg
+    title: The Last Supper II
+    material: Oil on canvas
+    dimensions: 59½ x 47
+  - image: ../../assets/art/westernreligion/miracleatsea.jpg
+    title: Miracle at Sea
+    material: Oil on canvas
+    dimensions: 25¼ x 20
+---

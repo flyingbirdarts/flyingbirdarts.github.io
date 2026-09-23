@@ -1,0 +1,47 @@
+---
+import { Image } from 'astro:assets';
+import { getCollection } from 'astro:content';
+import PageLayout from '../../layouts/PageLayout.astro';
+import header from '../../assets/headers/art-bg.jpg';
+
+const collections = (await getCollection('art')).sort((a, b) => a.data.order - b.data.order);
+---
+
+<PageLayout title="Art" headerImage={header}>
+  <ul class="covers">
+    {
+      collections.map(({ id, data }) => (
+        <li>
+          <a href={`/gallery/${id}/`}>
+            <Image src={data.cover} alt="" widths={[400, 800]} sizes="(min-width: 768px) 33vw, 100vw" />
+            <span class="name">{data.title}</span>
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</PageLayout>
+
+<style>
+  .covers {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 18rem), 1fr));
+    gap: 1.5rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .covers a {
+    display: block;
+    color: var(--color-text);
+  }
+
+  .name {
+    display: block;
+    padding-top: 0.5rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+</style>

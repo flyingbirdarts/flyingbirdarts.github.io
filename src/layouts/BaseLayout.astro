@@ -1,0 +1,60 @@
+---
+import '@fontsource/open-sans/400.css';
+import '@fontsource/open-sans/600.css';
+import '@fontsource/open-sans/800.css';
+import '@fontsource/josefin-sans/400.css';
+import '@fontsource/josefin-sans/600.css';
+import '../styles/global.css';
+import type { ImageMetadata } from 'astro';
+import { getImage } from 'astro:assets';
+import Analytics from '../components/Analytics.astro';
+import Footer from '../components/Footer.astro';
+import Nav from '../components/Nav.astro';
+import { site } from '../site';
+import defaultShareImage from '../assets/home/bg5.jpg';
+
+interface Props {
+  title?: string;
+  description?: string;
+  /** Hide the footer, e.g. on the full-screen home page. */
+  bare?: boolean;
+  /** Preview image when the page is shared in social media or messaging apps. */
+  shareImage?: ImageMetadata;
+}
+
+const { title, description = site.description, bare = false, shareImage = defaultShareImage } = Astro.props;
+const pageTitle = title ? `${title} - ${site.title}` : site.title;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+// 1200px wide is what most platforms use for large link previews.
+const share = await getImage({ src: shareImage, width: Math.min(1200, shareImage.width), format: 'jpg' });
+const shareUrl = new URL(share.src, Astro.site);
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{pageTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <meta property="og:site_name" content={site.title} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content={shareUrl} />
+    <meta property="og:image:width" content={String(share.attributes.width)} />
+    <meta property="og:image:height" content={String(share.attributes.height)} />
+    <meta property="og:image:alt" content="" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <Analytics />
+  </head>
+  <body>
+    <Nav />
+    <slot />
+    {!bare && <Footer />}
+  </body>
+</html>

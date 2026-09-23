@@ -1,0 +1,58 @@
+---
+import { site } from '../site';
+---
+
+<footer class="footer">
+  <ul class="social">
+    <li>
+      <a href={`mailto:${site.email}`} title="Email">
+        <span class="visually-hidden">Email</span>
+        <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
+          <path
+            d="M3 5h18v14H3z M3 5l9 8 9-8"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.75"
+            stroke-linejoin="round"></path>
+        </svg>
+      </a>
+    </li>
+  </ul>
+  <p class="copyright">Copyright &copy; {site.title} {new Date().getFullYear()}</p>
+</footer>
+
+<style>
+  .footer {
+    padding: 3rem var(--gutter) 2rem;
+    text-align: center;
+    color: var(--color-muted);
+  }
+
+  .social {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin: 0 0 1rem;
+    padding: 0;
+    list-style: none;
+  }
+
+  .social a {
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    color: #000;
+    background: var(--color-text);
+  }
+
+  .social a:hover {
+    background: var(--color-accent);
+  }
+
+  .copyright {
+    margin: 0;
+    font-size: 0.875rem;
+  }
+</style>

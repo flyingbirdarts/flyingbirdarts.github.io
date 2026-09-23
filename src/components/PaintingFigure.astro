@@ -1,0 +1,67 @@
+---
+// One painting as a lightbox-ready figure (see PaintingLightbox for the markup it relies on).
+import type { ImageMetadata } from 'astro';
+import { Image } from 'astro:assets';
+
+export interface Painting {
+  image: ImageMetadata;
+  title: string;
+  details: string;
+  /** Unique id within the collection, used for links like #makalu. */
+  pid: string;
+  /** URL of the native-size WebP opened in the lightbox. */
+  full: string;
+  /** Page with more about this painting, linked from the lightbox caption. */
+  link?: string;
+}
+
+interface Props {
+  painting: Painting;
+  sizes: string;
+  /** Show only the title under the image; the details still appear in the lightbox. */
+  compact?: boolean;
+  eager?: boolean;
+}
+
+const { painting: p, sizes, compact = false, eager = false } = Astro.props;
+---
+
+<figure>
+  <a
+    href={p.full}
+    data-pid={p.pid}
+    data-pswp-width={p.image.width}
+    data-pswp-height={p.image.height}
+    data-link={p.link}
+  >
+    <Image src={p.image} alt={p.title} widths={[300, 600]} sizes={sizes} loading={eager ? 'eager' : 'lazy'} />
+  </a>
+  <figcaption>
+    <strong>{p.title}</strong>
+    {p.details && <span class:list={{ 'visually-hidden': compact }}>{p.details}</span>}
+  </figcaption>
+</figure>
+
+<style>
+  figure {
+    margin: 0;
+  }
+
+  img {
+    width: 100%;
+  }
+
+  figcaption {
+    display: flex;
+    flex-direction: column;
+    padding-top: 0.5rem;
+    font-size: 0.9rem;
+    line-height: 1.4;
+  }
+
+  figcaption span {
+    font-family: Times, serif;
+    font-style: italic;
+    color: var(--color-muted);
+  }
+</style>
