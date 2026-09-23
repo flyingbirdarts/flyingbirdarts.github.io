@@ -2,9 +2,9 @@
 import { getImage } from 'astro:assets';
 import { getCollection, render, type CollectionEntry } from 'astro:content';
 import PaintingFigure, { type Painting } from '../../components/PaintingFigure.astro';
+import OrderBox from '../../components/OrderBox.astro';
 import PaintingLightbox from '../../components/PaintingLightbox.astro';
 import PageLayout from '../../layouts/PageLayout.astro';
-import { site } from '../../site';
 
 export async function getStaticPaths() {
   const collections = await getCollection('art');
@@ -50,7 +50,6 @@ const paintings: Painting[] = await Promise.all(
 const work = data.featured ? paintings[0] : undefined;
 const closeUps = work ? paintings.slice(1) : paintings;
 const gridSizes = '(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw';
-const printsHref = `mailto:${site.email}?subject=${encodeURIComponent(`Prints of "${data.title}"`)}`;
 ---
 
 <PageLayout title={data.title} headerImage={data.header}>
@@ -65,15 +64,11 @@ const printsHref = `mailto:${site.email}?subject=${encodeURIComponent(`Prints of
             <div class="prose">
               <Content />
             </div>
-            <aside class="prints">
-              <h2>Prints available</h2>
-              <p>
+            <div class="prints">
+              <OrderBox heading="Prints available" subject={`Prints of "${data.title}"`} buttonLabel="Email about prints">
                 Prints of <i>{data.title}</i> are available. Get in touch for sizes and pricing.
-              </p>
-              <a class="button" href={printsHref}>
-                Email about prints
-              </a>
-            </aside>
+              </OrderBox>
+            </div>
           </div>
         </section>
       ) : (
@@ -165,43 +160,6 @@ const printsHref = `mailto:${site.email}?subject=${encodeURIComponent(`Prints of
 
   .prints {
     margin-top: 1rem;
-    padding: 1.5rem;
-    border: 1px solid var(--color-accent);
-    border-left-width: 4px;
-    background: rgb(242 163 27 / 0.06);
-  }
-
-  .prints h2 {
-    margin: 0 0 0.5rem;
-    font-family: var(--font-display);
-    font-size: 1.4rem;
-    font-weight: 600;
-    letter-spacing: 0.05em;
-    color: var(--color-accent);
-  }
-
-  .prints p {
-    margin: 0 0 1.25rem;
-  }
-
-  .button {
-    display: inline-flex;
-    align-items: center;
-    min-height: 48px;
-    padding: 0.75em 1.5em;
-    font-family: var(--font-display);
-    font-weight: 600;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: #000;
-    background: var(--color-accent);
-    transition: background-color 0.2s;
-  }
-
-  .button:hover,
-  .button:focus-visible {
-    color: #000;
-    background: #fff;
   }
 
   .section-heading {

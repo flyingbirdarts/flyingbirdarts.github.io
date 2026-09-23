@@ -40,6 +40,8 @@ const albums = defineCollection({
       cover: image(),
       header: image(),
       spotifyAlbumId: z.string().optional(),
+      /** Show a "CDs available" box with an email-to-order button. */
+      cdAvailable: z.boolean().default(false),
       tracks: z.array(
         z.object({
           title: z.string(),

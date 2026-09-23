@@ -20,7 +20,8 @@ export const GET: APIRoute = async ({ site: origin }) => {
 
   const albumLines = albums.map(({ id, data }) => {
     const spotify = data.spotifyAlbumId ? `; also on Spotify (https://open.spotify.com/album/${data.spotifyAlbumId})` : '';
-    return `- [${data.title}](${url(`/music/${id}/`)}): ${data.label}. ${data.tracks.length} preview tracks: ${data.tracks.map((t) => t.title).join('; ')}${spotify}`;
+    const cd = data.cdAvailable ? '; CDs available to order by email' : '';
+    return `- [${data.title}](${url(`/music/${id}/`)}): ${data.label}. ${data.tracks.length} preview tracks: ${data.tracks.map((t) => t.title).join('; ')}${spotify}${cd}`;
   });
 
   const body = `# ${site.title}

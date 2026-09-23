@@ -2,6 +2,7 @@
 import { Image } from 'astro:assets';
 import { getCollection, type CollectionEntry } from 'astro:content';
 import AudioPlaylist from '../../components/AudioPlaylist.astro';
+import OrderBox from '../../components/OrderBox.astro';
 import PageLayout from '../../layouts/PageLayout.astro';
 
 export async function getStaticPaths() {
@@ -30,6 +31,16 @@ const tracks = data.tracks.map((t) => ({ ...t, src: `/music/${id}/tracks/${t.fil
     </div>
 
     <div class="listen">
+      {
+        data.cdAvailable && (
+          <div class="cd">
+            <OrderBox heading="CDs available" subject={`CD order: ${data.title}`} buttonLabel="Email to order">
+              <i>{data.title}</i> is available on CD. Email to order a copy.
+            </OrderBox>
+          </div>
+        )
+      }
+
       <h2>Preview tracks</h2>
       <AudioPlaylist album={data.title} tracks={tracks} cover={data.cover} />
 
@@ -74,6 +85,10 @@ const tracks = data.tracks.map((t) => ({ ...t, src: `/music/${id}/tracks/${t.fil
     font-weight: 600;
     letter-spacing: 0.1em;
     text-transform: uppercase;
+  }
+
+  .cd {
+    margin-bottom: 2.5rem;
   }
 
   .spotify {

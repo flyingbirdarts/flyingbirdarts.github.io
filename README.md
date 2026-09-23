@@ -37,6 +37,8 @@ A painting can also have `link: /gallery/<slug>/`, which adds a "Read about this
 
 Text written below a collection's front matter appears above its gallery. Set `featured: true` for a single work (like Fenway Park): the first painting is shown beside the text with a "Prints available" box, and the rest are shown as close-up details.
 
+Each album file has `cdAvailable: true`, which shows a "CDs available" box with an email-to-order button; set it to `false` if an album sells out.
+
 ## Deployment
 
 `.github/workflows/deploy.yml` builds and deploys on every push to `main`. In the repository settings, **Pages → Build and deployment → Source** must be set to **GitHub Actions**.
