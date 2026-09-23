@@ -1,3 +1,4 @@
+---
 title: Animals
 order: 3
 cover: ../../assets/art/_covers/animalslogo2.jpg
@@ -27,3 +28,4 @@ paintings:
     title: Tigre
     material: Oil on canvas
     dimensions: 23 x 23
+---

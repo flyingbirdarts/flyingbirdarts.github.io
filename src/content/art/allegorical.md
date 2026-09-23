@@ -1,3 +1,4 @@
+---
 title: Allegorical
 order: 1
 cover: ../../assets/art/_covers/allegoricallogo2.jpg
@@ -91,3 +92,4 @@ paintings:
     title: Trilogy
     material: Oil on canvas
     dimensions: 68 x 49
+---

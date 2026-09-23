@@ -2,15 +2,18 @@ import { defineCollection } from 'astro:content';
 import { glob } from 'astro/loaders';
 import { z } from 'astro/zod';
 
-// One YAML file per art collection, e.g. src/content/art/mountains.yaml → /gallery/mountains/
+// One Markdown file per art collection, e.g. src/content/art/mountains.md → /gallery/mountains/
+// The front matter lists the paintings; any text below it is shown as the collection's write-up.
 const art = defineCollection({
-  loader: glob({ pattern: '*.yaml', base: './src/content/art' }),
+  loader: glob({ pattern: '*.md', base: './src/content/art' }),
   schema: ({ image }) =>
     z.object({
       title: z.string(),
       order: z.number(),
       cover: image(),
       header: image(),
+      /** A single work: the first painting is the whole piece and the rest are close-ups. */
+      featured: z.boolean().default(false),
       paintings: z.array(
         z.object({
           image: image(),

@@ -1,3 +1,4 @@
+---
 title: Mountains
 order: 7
 cover: ../../assets/art/_covers/mountainslogo2.jpg
@@ -63,3 +64,4 @@ paintings:
     title: Traveler Mountain
     material: Acrylic on canvas
     dimensions: 56 x 42¼
+---

@@ -1,3 +1,4 @@
+---
 title: Baseball
 order: 4
 cover: ../../assets/art/_covers/baseballlogo2.jpg
@@ -10,7 +11,7 @@ paintings:
   - image: ../../assets/art/baseball/fenwaypark.jpg
     title: Fenway Park
     material: Oil on canvas
-    dimensions: 64 x 56
+    dimensions: 64 x 56½
   - image: ../../assets/art/baseball/jewelinthecity.jpg
     title: Jewel in the City
     material: Oil on canvas
@@ -27,3 +28,4 @@ paintings:
     title: Baseball Study
     material: India Ink on paper
     dimensions: 24 x 21
+---

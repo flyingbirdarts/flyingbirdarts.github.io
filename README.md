@@ -15,7 +15,7 @@ npx astro check  # type-check
 
 | What | Where |
 | --- | --- |
-| Art collections (one per gallery page) | `src/content/art/<slug>.yaml` → `/gallery/<slug>/` |
+| Art collections (one per gallery page) | `src/content/art/<slug>.md` → `/gallery/<slug>/` |
 | Painting images | `src/assets/art/<slug>/` (collection covers in `src/assets/art/_covers/`) |
 | Albums | `src/content/albums/<slug>.yaml` → `/music/<slug>/` |
 | Album preview tracks | `public/music/<slug>/tracks/*.mp3` |
@@ -23,7 +23,7 @@ npx astro check  # type-check
 | Home page images | `src/assets/home/` |
 | Site title, nav, email, analytics | `src/site.ts` |
 
-To add a painting, drop the image into `src/assets/art/<slug>/` and add an entry to that collection's `paintings` list:
+To add a painting, drop the image into `src/assets/art/<slug>/` and add an entry to the `paintings` list in that collection's front matter:
 
 ```yaml
   - image: ../../assets/art/mountains/newpainting.jpg
@@ -31,6 +31,8 @@ To add a painting, drop the image into `src/assets/art/<slug>/` and add an entry
     material: Acrylic on canvas
     dimensions: 40 x 30
 ```
+
+Text written below a collection's front matter appears above its gallery. Set `featured: true` for a single work (like Fenway Park): the first painting is shown beside the text with a "Prints available" box, and the rest are shown as close-up details.
 
 ## Deployment
 

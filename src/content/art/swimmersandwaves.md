@@ -1,3 +1,4 @@
+---
 title: Swimmers and Waves
 order: 9
 cover: ../../assets/art/_covers/swimmersandwaveslogo2.jpg
@@ -63,3 +64,4 @@ paintings:
     title: Under the Wave
     material: Acrylic on watercolor paper
     dimensions: 52 x 41½
+---

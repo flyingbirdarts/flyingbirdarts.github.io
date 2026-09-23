@@ -1,3 +1,4 @@
+---
 title: Carpets
 order: 5
 cover: ../../assets/art/_covers/carpetlogo2.jpg
@@ -43,3 +44,4 @@ paintings:
     title: Untitled
     material: India Ink on watercolor paper
     dimensions: 30 x 22
+---

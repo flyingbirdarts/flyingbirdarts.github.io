@@ -1,3 +1,4 @@
+---
 title: Americana
 order: 2
 cover: ../../assets/art/_covers/americanalogo2.jpg
@@ -55,3 +56,4 @@ paintings:
     title: Tree of Learning
     material: Acrylic on canvas
     dimensions: 68 x 48
+---

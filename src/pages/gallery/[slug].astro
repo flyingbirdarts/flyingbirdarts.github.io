@@ -1,8 +1,10 @@
 ---
-import { Image, getImage } from 'astro:assets';
-import { getCollection, type CollectionEntry } from 'astro:content';
+import { getImage } from 'astro:assets';
+import { getCollection, render, type CollectionEntry } from 'astro:content';
+import PaintingFigure, { type Painting } from '../../components/PaintingFigure.astro';
 import PaintingLightbox from '../../components/PaintingLightbox.astro';
 import PageLayout from '../../layouts/PageLayout.astro';
+import { site } from '../../site';
 
 export async function getStaticPaths() {
   const collections = await getCollection('art');
@@ -13,7 +15,10 @@ interface Props {
   entry: CollectionEntry<'art'>;
 }
 
-const { data } = Astro.props.entry;
+const { entry } = Astro.props;
+const { data } = entry;
+const { Content } = await render(entry);
+const hasWriteUp = Boolean(entry.body?.trim());
 
 // Paintings are kept at low resolution (600px max) on purpose, to discourage reproductions.
 // Link to a WebP at that native size rather than the original JPEG.
@@ -24,45 +29,72 @@ const slugify = (text: string) =>
     .replace(/[^a-z0-9]+/g, '-')
     .replace(/^-|-$/g, '');
 const usedIds = new Map<string, number>();
-const paintings = await Promise.all(
+const paintings: Painting[] = await Promise.all(
   data.paintings.map(async (p) => {
     // Unique per collection (two paintings can share a title), used for links like #makalu.
     const base = slugify(p.title) || 'painting';
     const count = (usedIds.get(base) ?? 0) + 1;
     usedIds.set(base, count);
     return {
-      ...p,
+      image: p.image,
+      title: p.title,
       pid: count > 1 ? `${base}-${count}` : base,
       full: (await getImage({ src: p.image, format: 'webp' })).src,
       details: [p.material, p.dimensions].filter(Boolean).join(', '),
     };
   }),
 );
+
+// A featured work is shown large beside its story, with the remaining images as close-ups.
+const work = data.featured ? paintings[0] : undefined;
+const closeUps = work ? paintings.slice(1) : paintings;
+const gridSizes = '(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw';
+const printsHref = `mailto:${site.email}?subject=${encodeURIComponent(`Prints of "${data.title}"`)}`;
 ---
 
 <PageLayout title={data.title} headerImage={data.header}>
-  <ul class="paintings" data-lightbox>
+  <div data-lightbox>
     {
-      paintings.map((p) => (
-        <li>
-          <figure>
-            <a href={p.full} data-pid={p.pid} data-pswp-width={p.image.width} data-pswp-height={p.image.height}>
-              <Image
-                src={p.image}
-                alt={p.title}
-                widths={[300, 600]}
-                sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-              />
-            </a>
-            <figcaption>
-              <strong>{p.title}</strong>
-              {p.details && <span>{p.details}</span>}
-            </figcaption>
-          </figure>
-        </li>
-      ))
+      work ? (
+        <section class="feature">
+          <div class="work">
+            <PaintingFigure painting={work} sizes="(min-width: 900px) 600px, 100vw" eager />
+          </div>
+          <div class="story">
+            <div class="prose">
+              <Content />
+            </div>
+            <aside class="prints">
+              <h2>Prints available</h2>
+              <p>
+                Prints of <i>{data.title}</i> are available. Get in touch for sizes and pricing.
+              </p>
+              <a class="button" href={printsHref}>
+                Email about prints
+              </a>
+            </aside>
+          </div>
+        </section>
+      ) : (
+        hasWriteUp && (
+          <div class="prose intro">
+            <Content />
+          </div>
+        )
+      )
     }
-  </ul>
+
+    {work && <h2 class="section-heading">Details</h2>}
+    <ul class="paintings">
+      {
+        closeUps.map((p) => (
+          <li>
+            <PaintingFigure painting={p} sizes={gridSizes} compact={Boolean(work)} />
+          </li>
+        ))
+      }
+    </ul>
+  </div>
   <PaintingLightbox />
 </PageLayout>
 
@@ -92,25 +124,91 @@ const paintings = await Promise.all(
     margin-bottom: 1.5rem;
   }
 
-  figure {
-    margin: 0;
+  .prose {
+    max-width: 40rem;
+    line-height: 1.7;
   }
 
-  img {
-    width: 100%;
+  .prose :global(p) {
+    margin: 0 0 1.25em;
   }
 
-  figcaption {
-    display: flex;
-    flex-direction: column;
-    padding-top: 0.5rem;
-    font-size: 0.9rem;
-    line-height: 1.4;
+  .intro {
+    margin: 0 auto 2.5rem;
   }
 
-  figcaption span {
-    font-family: Times, serif;
-    font-style: italic;
-    color: var(--color-muted);
+  /* Featured work: painting beside its story on wide screens, stacked on phones. */
+  .feature {
+    display: grid;
+    gap: 2rem 3rem;
+    margin-bottom: 3.5rem;
+  }
+
+  .work {
+    /* Never stretch the painting past 1.5× its native size. */
+    max-width: 600px;
+  }
+
+  @media (min-width: 900px) {
+    .feature {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      align-items: start;
+    }
+
+    /* Keep the painting in view while reading the story beside it. */
+    .work {
+      position: sticky;
+      top: 2rem;
+    }
+  }
+
+  .prints {
+    margin-top: 1rem;
+    padding: 1.5rem;
+    border: 1px solid var(--color-accent);
+    border-left-width: 4px;
+    background: rgb(242 163 27 / 0.06);
+  }
+
+  .prints h2 {
+    margin: 0 0 0.5rem;
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    color: var(--color-accent);
+  }
+
+  .prints p {
+    margin: 0 0 1.25rem;
+  }
+
+  .button {
+    display: inline-flex;
+    align-items: center;
+    min-height: 48px;
+    padding: 0.75em 1.5em;
+    font-family: var(--font-display);
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #000;
+    background: var(--color-accent);
+    transition: background-color 0.2s;
+  }
+
+  .button:hover,
+  .button:focus-visible {
+    color: #000;
+    background: #fff;
+  }
+
+  .section-heading {
+    margin: 0 0 1.5rem;
+    font-family: var(--font-display);
+    font-size: 1.6rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
   }
 </style>

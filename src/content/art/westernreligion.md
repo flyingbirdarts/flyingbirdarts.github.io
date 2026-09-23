@@ -1,3 +1,4 @@
+---
 title: Western Religion
 order: 10
 cover: ../../assets/art/_covers/westernreligionlogo2.jpg
@@ -59,3 +60,4 @@ paintings:
     title: Miracle at Sea
     material: Oil on canvas
     dimensions: 25¼ x 20
+---
