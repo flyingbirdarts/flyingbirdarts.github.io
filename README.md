@@ -39,6 +39,4 @@ Text written below a collection's front matter appears above its gallery. Set `f
 
 ## Deployment
 
-`.github/workflows/deploy.yml` builds and deploys on every push to `master`. In the repository settings, **Pages → Build and deployment → Source** must be set to **GitHub Actions**.
-
-`_legacy/` holds the original Jekyll site for reference while the port is in progress. It is not part of the build and will be removed once the port is complete.
+`.github/workflows/deploy.yml` builds and deploys on every push to `main`. In the repository settings, **Pages → Build and deployment → Source** must be set to **GitHub Actions**.
